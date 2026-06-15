@@ -1,0 +1,16 @@
+tolerance_percent: 3.0
+authorized_miles:
+  1843:
+    odlyzko: 91
+  1844:
+    odlyzko: 805
+  1845:
+    odlyzko: 2700
+    note: "Approximate; inclusion rules may differ."
+  1846:
+    odlyzko: 4538
+    note: "Approximate; do not hard-fail without review."
+  1847:
+    odlyzko: 1354
+  1850:
+    odlyzko: 8

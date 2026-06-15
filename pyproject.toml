@@ -1,0 +1,24 @@
+[project]
+name = "mitaron-railway1840"
+version = "0.1.0"
+description = "Auditable MVP pipeline for Railway Mania authorisation-to-construction analysis."
+requires-python = ">=3.11"
+dependencies = [
+  "pandas>=2.0",
+  "numpy>=1.24",
+  "pydantic>=2.0",
+  "jsonschema>=4.0",
+  "rapidfuzz>=3.0",
+  "pyyaml>=6.0",
+  "typer>=0.9",
+  "rich>=13.0",
+  "pytest>=7.0",
+]
+
+[project.optional-dependencies]
+gis = ["geopandas", "shapely", "pyproj", "fiona"]
+plot = ["matplotlib"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

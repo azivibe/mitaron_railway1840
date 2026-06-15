@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Authorized railway segment",
+  "type": "object",
+  "required": ["authorized_segment_id", "act_year", "company_name_raw", "segment_type", "source_doc_id"],
+  "properties": {
+    "authorized_segment_id": {"type": "string"},
+    "act_id": {"type": "string"},
+    "act_year": {"type": ["integer", "string"]},
+    "company_name_raw": {"type": ["string", "null"]},
+    "route_start_raw": {"type": ["string", "null"]},
+    "route_end_raw": {"type": ["string", "null"]},
+    "authorized_length_miles_decimal": {"type": ["number", "string", "null"]},
+    "segment_type": {"enum": ["new_line", "branch", "extension", "deviation", "capital_only", "amalgamation_or_lease", "abandonment", "unknown"]},
+    "is_eligible_for_construction_rate": {"type": ["boolean", "string"]},
+    "source_doc_id": {"type": "string"}
+  }
+}
