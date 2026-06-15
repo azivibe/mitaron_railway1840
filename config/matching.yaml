@@ -1,0 +1,10 @@
+weights:
+  company_score: 0.25
+  endpoint_score: 0.25
+  intermediate_place_score: 0.15
+  county_score: 0.15
+  length_score: 0.10
+  year_score: 0.10
+auto_match_threshold: 0.90
+adjudication_threshold: 0.65
+close_candidate_delta: 0.03
