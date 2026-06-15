@@ -41,6 +41,43 @@ python src/09_aggregate.py \
   --out outputs/tables/cohort_summary.csv
 ```
 
+
+## Quickstart with sample fixtures
+
+The repository includes small synthetic fixtures for a deterministic end-to-end MVP run. They are test data only and do **not** claim to represent historical railway authorisations or CAMPOP records.
+
+```bash
+mkdir -p data/interim data/processed data/external/campop_gis outputs/tables logs/validation_reports
+cp tests/fixtures/authorized_segments_extracted.jsonl data/interim/authorized_segments_extracted.jsonl
+cp tests/fixtures/campop_gis_sample.csv data/external/campop_gis/campop_gis_sample.csv
+
+python src/04_normalize.py \
+  --input data/interim/authorized_segments_extracted.jsonl \
+  --acts-out data/processed/acts.csv \
+  --segments-out data/processed/authorized_segments.csv
+
+python src/06_prepare_gis.py \
+  --input data/external/campop_gis/ \
+  --lines-out data/processed/lines.csv \
+  --segments-out data/processed/line_segments.csv
+
+python src/07_match.py \
+  --authorized data/processed/authorized_segments.csv \
+  --gis data/processed/line_segments.csv \
+  --candidates-out data/interim/match_candidates.csv \
+  --matches-out data/interim/auto_matches.csv \
+  --auto-threshold 0.85
+
+python src/09_aggregate.py \
+  --authorized data/processed/authorized_segments.csv \
+  --matches data/interim/auto_matches.csv \
+  --out outputs/tables/cohort_summary.csv
+```
+
+The final command writes `outputs/tables/cohort_summary.csv`, including `construction_rate_1851` and `construction_rate_1852`. The matching step also preserves `data/interim/match_candidates.csv` with the top five candidate GIS rows for each authorised segment.
+
+Real Parliamentary Papers extraction remains a later project stage. Do not scrape or mass-download restricted Parliamentary Papers databases; manually place permitted raw or extracted files under `data/` and preserve audit fields such as `source_doc_id`, `source_page`, `source_line_start`, `source_line_end`, `raw_text_excerpt`, and `confidence` when available.
+
 ## Implemented MVP components
 
 - `src/railway_mania.py` contains deterministic normalisation, capital/length conversion, fuzzy candidate scoring, and construction-rate utilities.
