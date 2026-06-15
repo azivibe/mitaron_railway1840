@@ -17,10 +17,14 @@ def main(input: Path, acts_out: Path, segments_out: Path) -> None:
     segs["company_name_clean"] = segs.get("company_name_clean", segs.get("company_name_raw", "")).map(clean_name)
     segs["route_start_clean"] = segs.get("route_start_clean", segs.get("route_start_raw", "")).map(clean_name)
     segs["route_end_clean"] = segs.get("route_end_clean", segs.get("route_end_raw", "")).map(clean_name)
-    segs["authorized_length_miles_decimal"] = [length_to_decimal(m, c) for m, c in zip(segs.get("authorized_miles", 0), segs.get("authorized_chains", 0))]
+    miles = segs["authorized_miles"] if "authorized_miles" in segs else pd.Series([0] * len(segs))
+    chains = segs["authorized_chains"] if "authorized_chains" in segs else pd.Series([0] * len(segs))
+    segs["authorized_length_miles_decimal"] = [length_to_decimal(m, c) for m, c in zip(miles, chains)]
     if "authorized_capital_pounds" in segs:
         segs["total_authorized_capital"] = segs["authorized_capital_pounds"].map(parse_pounds)
-    segs["is_eligible_for_construction_rate"] = [eligible_for_construction_rate(t, e) for t, e in zip(segs.get("segment_type", "unknown"), segs.get("is_eligible_for_construction_rate", ""))]
+    segment_types = segs["segment_type"] if "segment_type" in segs else pd.Series(["unknown"] * len(segs))
+    explicit_eligibility = segs["is_eligible_for_construction_rate"] if "is_eligible_for_construction_rate" in segs else pd.Series([""] * len(segs))
+    segs["is_eligible_for_construction_rate"] = [eligible_for_construction_rate(t, e) for t, e in zip(segment_types, explicit_eligibility)]
     segs.insert(0, "authorized_segment_id", [f"AUTH_{i+1:06d}" for i in range(len(segs))])
     segs["act_id"] = segs.get("act_id", segs["authorized_segment_id"].str.replace("AUTH", "ACT", regex=False))
     acts_cols = [c for c in ["act_id", "act_year", "session_year", "act_title_raw", "company_name_raw", "company_name_clean", "source_doc_id"] if c in segs]

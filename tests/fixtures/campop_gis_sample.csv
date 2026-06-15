@@ -1,0 +1,6 @@
+gis_segment_id,line_id,company_name_raw,line_name_raw,segment_start,segment_end,nearest_towns,county,segment_length_miles,line_length_miles,opening_year
+GIS_SAMPLE_001,LINE_SAMPLE_001,Northchester & Eastport Railway,Northchester to Eastport,Northchester,Eastport,Market Brough,Yorkshire,30,,1851
+GIS_SAMPLE_002,LINE_SAMPLE_002,Northchester and Eastport Railway,Market Brough to Millford Branch,Market Brough,Millford,,Yorkshire,10,,1852
+GIS_SAMPLE_003,LINE_SAMPLE_003,Southvale Railway,Southvale Extension,Southvale,Hilltown,Ash Common,Lancashire,20,,1853
+GIS_SAMPLE_004,LINE_SAMPLE_004,Oldshire Railway,Oldtown to Newtown,Oldtown,Newtown,,Kent,12,,1844
+GIS_SAMPLE_005,LINE_SAMPLE_005,Unrelated Railway,Elsewhere Line,Elsewhere,Nowhere,,Somerset,8,,1850
