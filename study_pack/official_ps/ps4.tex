@@ -1,0 +1,707 @@
+\chaptertitle{PS4 · 평균--분산 분석과 효율적 프런티어}{공식 Exercise 1--7 · 교수님 5단계 풀이, $\rho=1,0,-1$, MVP, 무위험자산과 공매도}
+
+\begin{sourcebox}
+\textbf{이 장의 공식 출처}: MBF\_PS4.pdf, MBF\_PS4\_Solution.pdf 및 공식 exercise session 녹취·수업 필기. 공식 해설 PDF에서 Exercise 1은 ``Discussed in the exercise session''이라고 되어 있으므로 해당 문항만 수업 설명을 근거로 재구성했다.
+\end{sourcebox}
+
+\section*{교수님이 강조한 PS4 정석 풀이 5단계}
+\addcontentsline{toc}{subsection}{PS4 정석 풀이 5단계}
+\begin{strategybox}[title={\bfseries 시험장에서 그대로 쓰는 5단계}]
+\begin{enumerate}
+\item 각 자산의 $\bar r_A,\bar r_B,\sigma_A,\sigma_B,\sigma_{AB}$를 계산한다.
+\item $\rho_{AB}=\sigma_{AB}/(\sigma_A\sigma_B)$를 계산한다. 수업에서 교수님은 시험문제라면 계산이 쉬운 $1,0,-1$이 특히 유력하다고 설명했다.
+\item 가중치 $w$를 정의하고
+\[
+\bar r_p=w\bar r_A+(1-w)\bar r_B,
+\]
+\[
+\sigma_p^2=w^2\sigma_A^2+(1-w)^2\sigma_B^2+2w(1-w)\sigma_{AB}
+\]
+를 쓴다.
+\item 평균식에서 $w$를 풀어 분산식에 대입해 $w$를 제거한다. 단, Exercise 1처럼 $\bar r_A=\bar r_B$이면 이 단계가 $0/0$이 되므로 분산을 직접 최소화한다.
+\item $(\sigma_p,\bar r_p)$ 평면에 A와 B를 먼저 찍고, 도출한 식과 공매도 조건을 반영해 frontier를 그린다.
+\end{enumerate}
+\end{strategybox}
+
+\begin{warningbox}
+공분산이 0인 문제도 처음부터 $2w(1-w)\sigma_{AB}$를 빼고 쓰지 않는다. 전체 분산식을 쓴 뒤 ``$\sigma_{AB}=0$이므로 마지막 항은 0''이라고 표시해야 계산을 알고 있다는 점이 드러난다.
+\end{warningbox}
+
+\exercise{PS4 Exercise 1}{공식 문제 · 수업 풀이 재구성}
+\begin{officialbox}
+세 상태가 각각 $1/3$ 확률로 발생한다. 무위험수익률은 $r_f=1$이고 위험자산 수익률은
+\[
+\begin{array}{c|ccc}
+&\text{상태 1}&\text{상태 2}&\text{상태 3}\\\hline
+\widetilde r_A&1&2&3\\
+\widetilde r_B&3&0&3
+\end{array}
+\]
+이다.
+\begin{enumerate}[label=(\alph*)]
+\item A와 B만 이용하고 두 자산의 공매도가 금지될 때 효율적 프런티어를 구하고 그려라. 분산을 최소화하는 가중치를 찾으라는 힌트가 주어져 있다.
+\item A, B와 무위험자산을 이용하며 $r_f$로 자유롭게 차입·대출할 수 있다. A와 B의 공매도는 금지된다. 효율적 프런티어와 자산배분을 설명하라.
+\item ``위험회피도가 높을수록 B의 비중은 낮고 A의 비중은 높다''는 진술은 참, 거짓, 판단불가 중 무엇인가?
+\item ``금리인하는 Sharpe ratio를 높이므로 모든 투자자에게 환영받는다''는 진술은 참, 거짓, 판단불가 중 무엇인가?
+\end{enumerate}
+\end{officialbox}
+
+\begin{strategybox}
+이 문항은 교수님이 정석 5단계의 \textbf{예외}라고 강조했다. 두 위험자산의 기대수익률이 모두 2라서 평균식으로 $w$를 풀 수 없다. 따라서 포트폴리오 분산을 $w$의 함수로 직접 최소화한다.
+\end{strategybox}
+
+\begin{solutionbox}
+\step{1--2단계: 통계량}
+\[
+\bar r_A=\frac{1+2+3}{3}=2,
+\qquad
+\bar r_B=\frac{3+0+3}{3}=2.
+\]
+\[
+\sigma_A^2=\frac{(1-2)^2+(2-2)^2+(3-2)^2}{3}=\frac23,
+\]
+\[
+\sigma_B^2=\frac{(3-2)^2+(0-2)^2+(3-2)^2}{3}=2.
+\]
+\[
+\sigma_{AB}=\frac{(1-2)(3-2)+(2-2)(0-2)+(3-2)(3-2)}3=0.
+\]
+따라서 $\rho_{AB}=0$이다.
+
+\step{(a) 위험자산만 있을 때}
+A의 비중을 $w$, B의 비중을 $1-w$라 두고 공매도 금지이므로 $0\le w\le1$이다.
+\[
+\bar r_p=w(2)+(1-w)(2)=2.
+\]
+모든 포트폴리오의 기대수익률이 동일하다. 분산은
+\[
+\sigma_p^2=w^2\frac23+(1-w)^2(2)+2w(1-w)(0).
+\]
+전개하거나 완전제곱하면
+\[
+\sigma_p^2=\frac83w^2-4w+2
+=\frac83\left(w-\frac34\right)^2+\frac12.
+\]
+따라서 최소분산 가중치는
+\[
+w_{MVP}=\frac34,\qquad1-w_{MVP}=\frac14,
+\]
+\[
+\sigma_{MVP}^2=\frac12,\qquad \sigma_{MVP}=\frac1{\sqrt2}.
+\]
+다른 모든 포트폴리오는 기대수익률은 2로 같으면서 위험만 더 크므로 MVP에 의해 지배된다. 따라서 효율적 프런티어는 곡선 전체가 아니라
+\[
+\boxed{\left(\sigma_p,\bar r_p\right)=\left(\frac1{\sqrt2},2\right)}
+\]
+한 점이다.
+
+\step{(b) 무위험자산 추가}
+위험자산 기회집합 중 같은 기대수익률 2에서 위험이 가장 작은 MVP가 접점포트폴리오 $T$가 된다. $T$의 위험자산 내부 구성은
+\[
+A:B=\frac34:\frac14=3:1.
+\]
+무위험점 $F=(0,1)$과 $T=(1/\sqrt2,2)$를 잇는 자본배분선의 기울기는
+\[
+\frac{2-1}{1/\sqrt2}=\sqrt2.
+\]
+차입과 대출이 모두 가능하므로 효율적 프런티어는
+\[
+\boxed{\bar r_p=1+\sqrt2\,\sigma_p,\qquad\sigma_p\ge0}.
+\]
+투자자가 총부의 비율 $y$를 $T$에 넣으면
+\[
+\sigma_p=y\sigma_T,\qquad \bar r_p=r_f+y(\bar r_T-r_f).
+\]
+$0<y<1$이면 무위험자산을 양으로 보유하는 순대출자, $y=1$이면 $T$만 보유, $y>1$이면 무위험자산을 음으로 보유하는 차입자다. 어느 경우에도 위험자산 내부 A:B 비율은 3:1로 같다.
+
+\step{(c) 2기금 분리}
+진술은 거짓이다. 위험회피도는 $T$와 무위험자산 사이의 비율 $y$를 바꾼다. 그러나 모든 투자자가 선택하는 위험자산 바스켓 $T$의 내부비율은 A:B=3:1로 동일하다. 더 위험선호적인 투자자가 B만 더 늘리는 것이 아니다.
+
+\step{(d) 금리인하의 후생효과}
+위험자산 $T$의 기대수익률과 위험이 고정되어 있다고 하자. 같은 $y$에서
+\[
+\bar r_p=r_f+y(\bar r_T-r_f)
+=y\bar r_T+(1-y)r_f.
+\]
+따라서
+\[
+\frac{\partial\bar r_p}{\partial r_f}=1-y.
+\]
+$r_f$가 하락하면
+\begin{itemize}
+\item $y<1$인 순대출자는 안전자산 수익이 낮아져 불리하다.
+\item $y=1$인 $T$ 단독보유자는 직접 영향이 없다.
+\item $y>1$인 순차입자는 차입비용이 낮아져 유리하다.
+\end{itemize}
+그러므로 ``모든 투자자''가 좋아한다는 결론은 낼 수 없고 답은 판단불가다.
+\end{solutionbox}
+
+\begin{answerbox}
+\begin{align*}
+\text{(a)}\quad &w_A=\frac34,\;w_B=\frac14,\;\sigma_{MVP}=\frac1{\sqrt2},\;\bar r_{MVP}=2,\\
+&\text{효율적 프런티어는 MVP 한 점.}\\
+\text{(b)}\quad &\bar r_p=1+\sqrt2\sigma_p,\;\sigma_p\ge0,\quad T:\;A:B=3:1.\\
+\text{(c)}\quad &\text{거짓. 위험회피도는 $T$와 무위험자산의 비율만 바꾼다.}\\
+\text{(d)}\quad &\text{판단불가. 대출자는 불리하고 차입자는 유리하다.}
+\end{align*}
+\end{answerbox}
+
+\begin{warningbox}
+$\bar r_A=\bar r_B$인데
+\[
+w=\frac{\bar r_B-\bar r_p}{\bar r_B-\bar r_A}
+\]
+를 쓰면 분모가 0이다. 이 문항에서는 반드시 분산을 직접 최소화해야 한다. 또한 효율적 프런티어를 A--B 전체 수평선으로 그리면 같은 수익률에서 더 위험한 점까지 포함하므로 오답이다.
+\end{warningbox}
+
+\exercise{PS4 Exercise 2}{공식 문제}
+\begin{officialbox}
+두 상태가 각각 $1/2$ 확률로 발생하고 무위험자산은 없다. 공매도는 허용된다.
+\[
+\begin{array}{c|cc}
+&\text{상태 1}&\text{상태 2}\\\hline
+\widetilde r_A&0&0.2\\
+\widetilde r_B&0.8&0
+\end{array}
+\]
+\begin{enumerate}[label=(\alph*)]
+\item A와 B 포트폴리오의 효율적 프런티어 식과 그림을 구하라.
+\item 초기부 $Y_0=1$이고 $\E[U(\widetilde Y_1)]=\E(\widetilde Y_1)-\frac12\Var(\widetilde Y_1)$인 투자자의 최적 가중치를 구하라.
+\item 공매도가 금지되면 효율적 프런티어와 투자자 후생은 어떻게 변하는가?
+\end{enumerate}
+\end{officialbox}
+
+\begin{strategybox}
+상관계수가 $-1$이므로 분산은 완전제곱이 된다. 효율적 프런티어는 위험 0 포트폴리오에서 시작하는 직선이며, 공매도가 허용되면 B를 넘어 북동쪽으로 연장된다.
+\end{strategybox}
+
+\begin{solutionbox}
+\step{통계량}
+\[
+\bar r_A=0.1,\quad \bar r_B=0.4,
+\quad\sigma_A=0.1,\quad\sigma_B=0.4,
+\]
+\[
+\sigma_{AB}=\frac{(0-0.1)(0.8-0.4)+(0.2-0.1)(0-0.4)}2=-0.04,
+\]
+\[
+\rho_{AB}=\frac{-0.04}{0.1\cdot0.4}=-1.
+\]
+
+\step{(a) 프런티어}
+A 비중을 $w$라 하면
+\[
+\bar r_p=0.1w+0.4(1-w)=0.4-0.3w,
+\]
+\[
+\sigma_p^2=[0.1w-0.4(1-w)]^2=(0.5w-0.4)^2.
+\]
+따라서
+\[
+\pm\sigma_p=0.5w-0.4
+\quad\Longrightarrow\quad
+w=0.8\pm2\sigma_p.
+\]
+평균식에 넣으면 가능한 포트폴리오의 두 직선은
+\[
+\bar r_p=\frac4{25}\pm\frac35\sigma_p.
+\]
+같은 위험에서 기대수익률이 높은 위쪽만 효율적이므로
+\[
+\boxed{\bar r_p=\frac4{25}+\frac35\sigma_p,\qquad\sigma_p\ge0}.
+\]
+위험 0 포트폴리오는 $w=0.8$, 즉 A 80\%, B 20\%이며 기대수익률은 $0.16$이다.
+
+\step{(b) 최적 가중치}
+최종부는 $(1+\widetilde r_p)Y_0$이고 $Y_0=1$이므로 목적함수는
+\[
+1+(0.4-0.3w)-\frac12(0.5w-0.4)^2.
+\]
+FOC는
+\[
+-0.3-0.5(0.5w-0.4)=0.
+\]
+따라서
+\[
+\boxed{w_A^*=-\frac25,\qquad w_B^*=1-w_A^*=\frac75}.
+\]
+A를 40\% 공매도하고 그 자금까지 합쳐 B를 140\% 보유한다.
+
+\step{(c) 공매도 금지}
+$0\le w\le1$이므로 $w<0$에 해당하는 B 북동쪽 연장선이 제거된다. 무제약 최적점 $w=-2/5$는 불가능하므로 제약하에서 가장 가까운 효율적 경계 $w=0$, 즉 B 100\%가 최적이다. 선택집합이 줄어들어 최대 기대효용은 낮아진다.
+\end{solutionbox}
+
+\begin{answerbox}
+\[
+\bar r_p=\frac4{25}+\frac35\sigma_p,\quad\sigma_p\ge0,
+\qquad
+(w_A^*,w_B^*)=\left(-\frac25,\frac75\right).
+\]
+공매도 금지 시 효율적 프런티어는 위험 0 포트폴리오부터 B까지만 남고, 투자자는 B 100\%를 선택하며 더 나빠진다.
+\end{answerbox}
+
+\begin{warningbox}
+$\rho=-1$이라고 해서 모든 가중치에서 위험이 0인 것은 아니다. $w\sigma_A=(1-w)\sigma_B$를 만족하는 단 하나의 가중치에서만 위험이 완전히 상쇄된다.
+\end{warningbox}
+
+\exercise{PS4 Exercise 3}{공식 문제}
+\begin{officialbox}
+세 상태가 각각 $1/3$ 확률이며 무위험자산은 없다.
+\[
+\begin{array}{c|ccc}
+&1&2&3\\\hline
+\widetilde r_A&1&2&0\\
+\widetilde r_B&0&3&3
+\end{array}
+\]
+\begin{enumerate}[label=(\alph*)]
+\item A와 B 사이에 평균--분산 지배관계가 있는가?
+\item 두 자산 모두 공매도가 허용될 때 minimum-variance frontier를 구하고 그려라. MVP의 평균과 표준편차를 구하면 보너스다.
+\item 초기부 1이고 $\E[U(\widetilde Y_1)]=\E(\widetilde Y_1)-\frac16\Var(\widetilde Y_1)$인 투자자의 최적 가중치를 구하고 무차별곡선을 설명하라.
+\end{enumerate}
+\end{officialbox}
+
+\begin{strategybox}
+공분산이 0인 전형적 bullet-shaped frontier다. 평균식에서 $w=2-\bar r_p$를 구해 분산식에 넣는다. MVP와 투자자 최적점은 서로 다른 문제다.
+\end{strategybox}
+
+\begin{solutionbox}
+\step{통계량과 (a)}
+\[
+\bar r_A=1,\quad\bar r_B=2,
+\quad\sigma_A^2=\frac23,\quad\sigma_B^2=2,
+\quad\sigma_{AB}=0.
+\]
+B는 기대수익률이 높지만 위험도 높다. 따라서 어느 자산도 다른 자산을 평균--분산 지배하지 않는다.
+
+\step{(b) minimum-variance frontier}
+A 비중을 $w$라 하면
+\[
+\bar r_p=w(1)+(1-w)(2)=2-w
+\quad\Longrightarrow\quad w=2-\bar r_p.
+\]
+분산은
+\[
+\sigma_p^2=w^2\frac23+(1-w)^2(2)+2w(1-w)(0).
+\]
+$w=2-\bar r_p$, $1-w=\bar r_p-1$을 넣으면
+\[
+\boxed{\sigma_p=\sqrt{\frac23(2-\bar r_p)^2+2(\bar r_p-1)^2}}.
+\]
+MVP는 분산을 $w$로 미분하여
+\[
+\frac{\dd\sigma_p^2}{\dd w}=\frac43w-4(1-w)=0
+\quad\Longrightarrow\quad w_{MVP}=\frac34.
+\]
+따라서
+\[
+\bar r_{MVP}=2-\frac34=\frac54,
+\qquad
+\sigma_{MVP}^2=\frac12,
+\qquad
+\sigma_{MVP}=\frac1{\sqrt2}.
+\]
+
+\step{(c) 투자자 최적점}
+$Y_0=1$이므로
+\[
+\E[U]=1+\bar r_p-\frac16\sigma_p^2.
+\]
+$w$로 쓰면
+\[
+\E[U]=1+[2-w]-\frac16\left[\frac23w^2+2(1-w)^2\right].
+\]
+FOC는
+\[
+-1-\frac16\left(\frac{16}{3}w-4\right)=0
+\quad\Longrightarrow\quad
+\boxed{w_A^*=-\frac38,\qquad w_B^*=\frac{11}{8}}.
+\]
+A를 공매도하고 B를 레버리지 보유한다. 참고로
+\[
+\bar r_p^*=2-\left(-\frac38\right)=\frac{19}{8},
+\]
+\[
+(\sigma_p^*)^2=\frac23\left(\frac{9}{64}\right)+2\left(\frac{11}{8}\right)^2
+=\frac{31}{8}.
+\]
+무차별곡선은 일정 효용 $\overline U$에 대해
+\[
+\bar r_p=\overline U-1+\frac16\sigma_p^2
+\]
+이므로 위로 볼록하며 효율적 상단 branch에 접한다.
+\end{solutionbox}
+
+\begin{answerbox}
+\begin{align*}
+\text{(a)}\quad &\text{지배관계 없음.}\\
+\text{(b)}\quad &\sigma_p=\sqrt{\frac23(2-\bar r_p)^2+2(\bar r_p-1)^2},\\
+&w_{MVP}=\frac34,\quad \bar r_{MVP}=\frac54,\quad\sigma_{MVP}=\frac1{\sqrt2}.\\
+\text{(c)}\quad &(w_A^*,w_B^*)=\left(-\frac38,\frac{11}{8}\right).
+\end{align*}
+\end{answerbox}
+
+\begin{warningbox}
+minimum-variance frontier 전체와 efficient frontier 상단을 구분해야 한다. MVP의 왼쪽·아래쪽 branch는 같은 위험에서 더 높은 수익률을 주는 상단 branch에 지배될 수 있다.
+\end{warningbox}
+
+\exercise{PS4 Exercise 4}{공식 문제}
+\begin{officialbox}
+세 상태가 각각 $1/3$ 확률이고 무위험수익률은 $r_f=5.5$다.
+\[
+\begin{array}{c|ccc}
+&1&2&3\\\hline
+\widetilde r_A&8&6&4\\
+\widetilde r_B&11&7&3
+\end{array}
+\]
+\begin{enumerate}[label=(\alph*)]
+\item 평균--분산 지배관계가 있는가?
+\item Sharpe ratio로 A와 B를 비교하라.
+\item A와 B만 이용하고 공매도가 금지될 때 효율적 프런티어를 구하라.
+\item 무위험자산까지 이용하고 자유롭게 차입·대출할 때 자산배분을 설명하라.
+\item $r_f$가 4.5로 하락하면 (d)가 어떻게 바뀌며 투자자 후생은 어떻게 되는가?
+\end{enumerate}
+\end{officialbox}
+
+\begin{strategybox}
+두 위험자산은 $\rho=1$이다. 따라서 A--B 기회집합은 직선이고 분산효과가 없다. 무위험자산이 추가되면 두 자산 중 Sharpe ratio가 더 큰 자산과 무위험자산의 조합이 선택된다.
+\end{strategybox}
+
+\begin{solutionbox}
+\step{통계량}
+\[
+\bar r_A=6,\quad\bar r_B=7,
+\quad\sigma_A^2=\frac83,\quad\sigma_B^2=\frac{32}{3},
+\quad\sigma_{AB}=\frac{16}{3}.
+\]
+$\sigma_B=2\sigma_A$이고
+\[
+\rho_{AB}=\frac{16/3}{\sqrt{8/3}\sqrt{32/3}}=1.
+\]
+
+\step{(a) 지배관계}
+B는 평균이 높지만 분산도 높다. 따라서 지배관계는 없다.
+
+\step{(b) Sharpe ratio, $r_f=5.5$}
+\[
+SR_A=\frac{6-5.5}{\sigma_A}=\frac{0.5}{\sigma_A},
+\]
+\[
+SR_B=\frac{7-5.5}{\sigma_B}=\frac{1.5}{2\sigma_A}=\frac{0.75}{\sigma_A}.
+\]
+따라서 $SR_B>SR_A$다.
+
+\step{(c) 위험자산만}
+A 비중을 $w\in[0,1]$라 하면 $\rho=1$이므로
+\[
+\sigma_p=w\sigma_A+(1-w)\sigma_B,
+\qquad
+\bar r_p=6w+7(1-w).
+\]
+$\sigma_B=2\sigma_A$를 이용해 $w=2-\sigma_p/\sigma_A$를 얻고
+\[
+\bar r_p=5+\frac{\sigma_p}{\sigma_A}
+=5+\sqrt{\frac38}\sigma_p.
+\]
+따라서
+\[
+\boxed{\bar r_p=5+\sqrt{\frac38}\sigma_p,\qquad
+\sigma_p\in[\sigma_A,\sigma_B]}.
+\]
+
+\step{(d) 무위험자산 추가}
+$r_f=5.5$에서는 B의 Sharpe ratio가 더 높다. 따라서 투자자는 A를 보유하지 않고 무위험자산과 B를 조합한다. 위험회피도가 높은 사람은 무위험자산 비중이 높고, 위험선호가 강한 사람은 무위험자산을 음으로 보유해 차입한 뒤 B를 100\% 이상 보유할 수 있다.
+
+\step{(e) $r_f=4.5$}
+새 Sharpe ratio는
+\[
+SR_A'=\frac{6-4.5}{\sigma_A}=\frac{1.5}{\sigma_A},
+\]
+\[
+SR_B'=\frac{7-4.5}{2\sigma_A}=\frac{1.25}{\sigma_A}.
+\]
+이제 $SR_A'>SR_B'$이므로 접점자산이 B에서 A로 바뀐다. 투자자들은 무위험자산과 A를 조합한다.
+
+금리인하의 후생효과는 일률적이지 않다. 무위험자산을 양으로 보유하는 순대출자는 이자수입 하락으로 불리할 수 있고, 차입자는 자금조달비용 하락으로 유리할 수 있다. 선호와 기존 포지션에 따라 더 좋아질 수도, 나빠질 수도 있다.
+\end{solutionbox}
+
+\begin{answerbox}
+\begin{enumerate}[label=(\alph*)]
+\item 평균--분산 지배 없음.
+\item $r_f=5.5$에서 $SR_B>SR_A$.
+\item $\bar r_p=5+\sqrt{3/8}\,\sigma_p$, $\sigma_p\in[\sigma_A,\sigma_B]$.
+\item 무위험자산과 B만 조합한다.
+\item $r_f=4.5$에서는 무위험자산과 A만 조합한다. 후생효과는 투자자에 따라 다르다.
+\end{enumerate}
+\end{answerbox}
+
+\begin{warningbox}
+Sharpe ratio는 무조건 $\bar r/\sigma$가 아니라 \textbf{$(\bar r-r_f)/\sigma$}다. 금리가 바뀌면 순위도 바뀔 수 있다.
+\end{warningbox}
+
+\exercise{PS4 Exercise 5}{공식 문제}
+\begin{officialbox}
+세 상태가 각각 $1/3$ 확률이고 무위험자산은 없다.
+\[
+\begin{array}{c|ccc}
+&1&2&3\\\hline
+\widetilde r_A&6&8&4\\
+\widetilde r_B&7&3&11
+\end{array}
+\]
+\begin{enumerate}[label=(\alph*)]
+\item 평균--분산 지배관계가 있는가?
+\item 두 자산 모두 공매도 금지일 때 효율적 프런티어를 구하라.
+\item B의 공매도만 허용하면 프런티어와 후생은 어떻게 변하는가?
+\item A와 B 모두 공매도를 허용하면 어떻게 변하는가?
+\end{enumerate}
+\end{officialbox}
+
+\begin{strategybox}
+$\rho=-1$이고 B가 고수익·고위험자산이다. 위험 0 포트폴리오에서 B 방향이 효율적 상단이고, 반대 방향인 B 공매도는 지배되는 하단을 늘릴 뿐이다.
+\end{strategybox}
+
+\begin{solutionbox}
+\step{통계량과 (a)}
+\[
+\bar r_A=6,\quad\bar r_B=7,
+\quad\sigma_A^2=\frac83,\quad\sigma_B^2=\frac{32}{3},
+\quad\sigma_{AB}=-\frac{16}{3},\quad\rho=-1.
+\]
+B는 기대수익률과 위험이 모두 높으므로 지배관계가 없다.
+
+\step{(b) 공매도 금지}
+A 비중을 $w\in[0,1]$라 하면
+\[
+\sigma_p=\left|w\sigma_A-(1-w)\sigma_B\right|,
+\qquad
+\bar r_p=6w+7(1-w)=7-w.
+\]
+위험 0 가중치는
+\[
+w_F=\frac{\sigma_B}{\sigma_A+\sigma_B}=\frac23,
+\]
+그때 기대수익률은
+\[
+\bar r_F=6\cdot\frac23+7\cdot\frac13=\frac{19}{3}.
+\]
+위험 0점에서 B로 가는 상단의 기울기는
+\[
+\frac{7-19/3}{\sigma_B-0}=\frac{1/3}{\sigma_B}=\frac1{\sqrt{24}}.
+\]
+따라서
+\[
+\boxed{\bar r_p=\frac{19}{3}+\sqrt{\frac1{24}}\sigma_p,\qquad
+\sigma_p\in[0,\sigma_B]}.
+\]
+
+\step{(c) B만 공매도 허용}
+B 비중 $1-w<0$, 즉 $w>1$인 영역이 추가된다. 이 방향은 A를 지나 기대수익률이 더 낮아지고 위험은 더 커지는 하단 branch다. 이미 존재하는 효율적 포트폴리오에 지배되므로 \textbf{효율적 프런티어는 바뀌지 않는다}. 투자자의 최적 선택과 기대효용도 변하지 않는다.
+
+\step{(d) 두 자산 모두 공매도 허용}
+A 공매도는 $w<0$을 허용하여 B를 넘어 더 높은 기대수익률과 위험의 북동쪽 상단을 추가한다. 따라서
+\[
+\boxed{\bar r_p=\frac{19}{3}+\sqrt{\frac1{24}}\sigma_p,\qquad
+\sigma_p\in[0,\infty)}.
+\]
+선택집합이 확대되므로 어떤 투자자도 나빠지지 않는다. 원래 최적점에 머무는 투자자는 무차별이고, A 공매도를 원하는 투자자는 엄격히 좋아진다.
+\end{solutionbox}
+
+\begin{answerbox}
+지배관계는 없다. 공매도 금지 frontier는
+\[
+\bar r_p=\frac{19}{3}+\sqrt{\frac1{24}}\sigma_p,\quad0\le\sigma_p\le\sigma_B.
+\]
+B 공매도만 허용해도 효율적 프런티어와 후생은 변하지 않는다. 두 자산 모두 허용하면 같은 직선이 $\sigma_p\to\infty$까지 연장되고 투자자는 약하게 더 좋아진다.
+\end{answerbox}
+
+\begin{warningbox}
+``공매도 허용 = 효율적 프런티어가 항상 확대''는 아니다. 어느 자산을 공매도하는 방향이 상단인지 하단인지, 즉 기대수익률과 위험이 함께 어떻게 변하는지를 확인해야 한다.
+\end{warningbox}
+
+\exercise{PS4 Exercise 6}{공식 문제}
+\begin{officialbox}
+세 상태가 각각 $1/3$ 확률이고 무위험자산은 없으며 공매도가 금지된다.
+\[
+\begin{array}{c|ccc}
+&1&2&3\\\hline
+\widetilde r_A&2&4&0\\
+\widetilde r_B&4&0&8
+\end{array}
+\]
+\begin{enumerate}[label=(\alph*)]
+\item 효율적 프런티어를 구하라.
+\item ``극도로 위험회피적인 투자자는 B보다 변동성이 작은 A에 70\% 넘게 투자할 수 있다''는 진술을 판정하라.
+\item B를 상태별로 지배하는 새 자산 $C=(4,6,8)$로 교체한다. 평균--분산 투자자가 더 좋아질 수도 나빠질 수도 있음을 그림으로 설명하고, 상태별 지배에도 이러한 역설이 생기는 이유를 설명하라.
+\end{enumerate}
+\end{officialbox}
+
+\begin{strategybox}
+(a)는 Exercise 5와 같은 $\rho=-1$ 구조다. (b)는 낮은 개별 변동성이 아니라 \textbf{포트폴리오 지배}를 봐야 한다. (c)는 평균--분산 기준의 한계를 묻는다.
+\end{strategybox}
+
+\begin{solutionbox}
+\step{(a) 통계량과 프런티어}
+\[
+\bar r_A=2,\quad\bar r_B=4,
+\quad\sigma_A^2=\frac83,\quad\sigma_B^2=\frac{32}{3},
+\quad\sigma_{AB}=-\frac{16}{3},\quad\rho=-1.
+\]
+A 비중을 $w\in[0,1]$라 하면 위험 0 가중치는
+\[
+w_F=\frac{\sigma_B}{\sigma_A+\sigma_B}=\frac23,
+\]
+그때 기대수익률은
+\[
+\bar r_F=2\cdot\frac23+4\cdot\frac13=\frac83.
+\]
+상단 기울기는
+\[
+\frac{4-8/3}{\sigma_B}=\frac{4/3}{\sqrt{32/3}}=\frac1{\sqrt6}.
+\]
+따라서
+\[
+\boxed{\bar r_p=\frac83+\sqrt{\frac16}\sigma_p,\qquad
+0\le\sigma_p\le\sigma_B}.
+\]
+
+\step{(b) 70\% A 진술}
+위험 0 포트폴리오의 A 비중이 정확히 $2/3\approx66.7\%$다. $w>2/3$으로 A를 더 늘리면 위험은 다시 커지지만 기대수익률은 낮아진다. 이는 효율적 상단이 아니라 지배되는 하단이다. 따라서 어떤 평균--분산 투자자도 $w_A\ge0.7>2/3$을 선택하지 않는다. 진술은 거짓이다.
+
+\step{(c) B를 C로 교체}
+$C=(4,6,8)$은 모든 상태에서 B보다 같거나 높은 수익을 준다. 그러나 A와 C의 통계량은
+\[
+\bar r_C=6,\quad\sigma_C^2=\frac83,
+\quad\sigma_{AC}=-\frac43,\quad\rho_{AC}=-\frac12.
+\]
+A--C 조합은 평균수익률을 크게 올리지만 $\rho=-1$이 아니므로 위험을 완전히 0으로 만들 수 없다. 높은 평균을 중시하는 투자자는 새 기회집합에서 더 좋아질 수 있고, 위험 0 근처를 강하게 선호하는 투자자는 평균--분산 그림상 더 나빠질 수 있다.
+
+이 결론은 상태별 지배와 충돌하는 것처럼 보이지만, 원인은 Modern Portfolio Theory가 분포 전체가 아니라 평균과 분산만으로 선호를 표현한다는 강한 가정이다. 실제로 C의 상태 2 초과수익 6을 그냥 버리면 B를 복제할 수 있으므로, 완전한 상태별 선택이 허용되는 합리적 투자자는 C 도입으로 나빠질 이유가 없다. 평균--분산 기준이 그 우월성을 완전히 포착하지 못한 것이다.
+\end{solutionbox}
+
+\begin{answerbox}
+\[
+\bar r_p=\frac83+\sqrt{\frac16}\sigma_p,\quad0\le\sigma_p\le\sigma_B.
+\]
+(b)는 거짓이며 효율적인 A 비중의 최대는 위험 0점의 $2/3$이다. (c)의 역설은 상태별 지배를 평균과 분산 두 숫자만으로 완전히 표현하지 못하는 MPT의 한계에서 나온다.
+\end{answerbox}
+
+\begin{warningbox}
+개별자산 A가 덜 위험하다는 사실만 보고 A 비중을 무한히 늘리면 안 된다. 포트폴리오 위험은 공분산과 조합비율에 의해 결정되며, 위험 0점을 지나면 A를 더 늘리는 것이 오히려 열등해진다.
+\end{warningbox}
+
+\exercise{PS4 Exercise 7}{공식 문제}
+\begin{officialbox}
+세 상태가 각각 $1/3$ 확률이고 무위험자산은 없으며 공매도가 허용된다.
+\[
+\begin{array}{c|ccc}
+&1&2&3\\\hline
+\widetilde r_A&2&5&2\\
+\widetilde r_B&0&6&0
+\end{array}
+\]
+투자자의 초기부는 $Y_0$이고 $\widetilde Y_1=(1+\widetilde r_p)Y_0$, $\widetilde r_p=w\widetilde r_A+(1-w)\widetilde r_B$, 효용은 $\ln\widetilde Y_1$이다.
+\begin{enumerate}[label=(\alph*)]
+\item 효율적 프런티어를 구하라.
+\item MVP의 A와 B 가중치를 구하라.
+\item 투자자의 최적 가중치, 최적 기대수익률과 표준편차를 구하라.
+\end{enumerate}
+\end{officialbox}
+
+\begin{strategybox}
+$\rho=1$이지만 공매도를 허용하므로 두 자산의 변동을 반대로 배치해 위험 0 포트폴리오를 만들 수 있다. 로그효용은 세 상태 최종부를 직접 넣어 $w$로 미분한다.
+\end{strategybox}
+
+\begin{solutionbox}
+\step{통계량}
+\[
+\bar r_A=3,\quad\bar r_B=2,
+\quad\sigma_A^2=2,\quad\sigma_B^2=8,
+\quad\sigma_{AB}=4,
+\]
+\[
+\rho_{AB}=\frac4{\sqrt2\sqrt8}=1.
+\]
+A는 B보다 평균이 높고 분산이 낮으므로 A가 B를 평균--분산 지배한다.
+
+\step{(a) 효율적 프런티어}
+A 비중을 $w$라 하면
+\[
+\bar r_p=3w+2(1-w)=2+w.
+\]
+$\rho=1$이므로
+\[
+\sigma_p^2=[w\sigma_A+(1-w)\sigma_B]^2
+=[w\sqrt2+(1-w)2\sqrt2]^2
+=2(2-w)^2.
+\]
+따라서
+\[
+\sigma_p=\sqrt2|2-w|.
+\]
+$w=2$에서 위험이 0이고 평균은 4다. $w\ge2$인 상단 branch에서는
+\[
+w=2+\frac{\sigma_p}{\sqrt2}.
+\]
+평균식에 넣으면 효율적 프런티어는
+\[
+\boxed{\bar r_p=4+\frac1{\sqrt2}\sigma_p,\qquad\sigma_p\ge0}.
+\]
+다른 branch $\bar r_p=4-\sigma_p/\sqrt2$는 같은 위험에서 더 낮은 평균이므로 지배된다.
+
+\step{(b) MVP}
+\[
+\sigma_p=0\quad\Longleftrightarrow\quad w=2.
+\]
+따라서
+\[
+\boxed{w_A^{MVP}=2,\qquad w_B^{MVP}=1-w=-1}.
+\]
+B를 100\% 공매도하고 A를 200\% 보유하면 두 자산의 완전한 양의 상관 변동이 상쇄된다.
+
+\step{(c) 로그효용 최적화}
+상태별 포트폴리오 수익률은
+\[
+\widetilde r_{p,1}=2w,\qquad
+\widetilde r_{p,2}=5w+6(1-w)=6-w,\qquad
+\widetilde r_{p,3}=2w.
+\]
+따라서 $Y_0$의 로그는 상수이므로
+\[
+\max_w\left\{\frac23\ln(1+2w)+\frac13\ln(7-w)\right\},
+\]
+정의역은 $-1/2<w<7$이다. FOC는
+\[
+\frac{4}{3(1+2w)}-\frac1{3(7-w)}=0.
+\]
+따라서
+\[
+4(7-w)=1+2w
+\quad\Longrightarrow\quad
+\boxed{w_A^*=\frac92,\qquad w_B^*=-\frac72}.
+\]
+최적 기대수익률은
+\[
+\bar r_p^*=2+\frac92=\frac{13}{2}.
+\]
+표준편차는
+\[
+\sigma_p^*=\sqrt2\left|2-\frac92\right|
+=\boxed{\frac{5\sqrt2}{2}}.
+\]
+이는 효율적 프런티어와 로그효용 투자자의 무차별곡선이 접하는 점이다.
+\end{solutionbox}
+
+\begin{answerbox}
+\begin{align*}
+\text{(a)}\quad &\bar r_p=4+\frac{\sigma_p}{\sqrt2},\quad\sigma_p\ge0.\\
+\text{(b)}\quad &(w_A^{MVP},w_B^{MVP})=(2,-1),\quad(\sigma,\bar r)=(0,4).\\
+\text{(c)}\quad &(w_A^*,w_B^*)=\left(\frac92,-\frac72\right),\\
+&\bar r_p^*=\frac{13}{2},\qquad\sigma_p^*=\frac{5\sqrt2}{2}.
+\end{align*}
+\end{answerbox}
+
+\begin{warningbox}
+$\rho=1$이면 ``분산효과가 전혀 없다''는 설명은 가중치가 $0$과 1 사이일 때의 통상적 long-only 해석이다. 공매도가 허용되면 한 자산을 음으로 보유하여 완전 양의 상관 변동도 상쇄할 수 있다.
+\end{warningbox}
