@@ -36,6 +36,8 @@ jobs:
       - name: Compile detailed official guide
         working-directory: study_pack/official_ps
         run: |
+          # Repair one malformed token introduced while transporting the source text.
+          sed -i '398s/^rac{/\\frac{/' ps3.tex
           set +e
           latexmk -xelatex -interaction=nonstopmode -halt-on-error \
             official_ps1_ps4_detailed.tex > xelatex-build.log 2>&1
