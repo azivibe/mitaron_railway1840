@@ -33,6 +33,20 @@ jobs:
       - name: Compile PDFs
         run: |
           mkdir -p study_pack/output
+          # Typst identifiers cannot use the hyphenated helper names used in the source draft.
+          # Normalize them only in the runner workspace before compilation.
+          sed -i \
+            -e 's/show-solutions/show_solutions/g' \
+            -e 's/maybe-solution/maybe_solution/g' \
+            -e 's/maybe-key/maybe_key/g' \
+            -e 's/maybe-caution/maybe_caution/g' \
+            study_pack/official_ps/main.typ \
+            study_pack/official_ps/problems_only.typ \
+            study_pack/official_ps/content.typ \
+            study_pack/official_ps/ps1.typ \
+            study_pack/official_ps/ps2.typ \
+            study_pack/official_ps/ps3.typ \
+            study_pack/official_ps/ps4.typ
           set +e
           {
             echo '=== Detailed edition ==='
