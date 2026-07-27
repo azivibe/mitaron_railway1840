@@ -1,15 +1,15 @@
 === Detailed edition ===
-error: unknown variable: e·1
-    ┌─ study_pack/official_ps/ps1.typ:184:13
-    │
-184 │     $ e(2-x)=e·1+1·1=e+1 $
-    │              ^^^
-    │
-    = hint: if you meant to display multiple letters as is, try adding spaces between each letter: `e · 1`
-    = hint: or if you meant to display this as text, try placing it in quotes: `"e·1"`
+error: unknown variable: kW
+   ┌─ study_pack/official_ps/ps2.typ:42:25
+   │
+42 │   #formula([$ u(W)=-exp(-kW) $])
+   │                          ^^
+   │
+   = hint: if you meant to display multiple letters as is, try adding spaces between each letter: `k W`
+   = hint: or if you meant to display this as text, try placing it in quotes: `"kW"`
 
-  while including `ps1.typ` at study_pack/official_ps/content.typ:60:1
-    include "ps1.typ"
+  while including `ps2.typ` at study_pack/official_ps/content.typ:61:1
+    include "ps2.typ"
 
 warning: unknown font family: noto sans
    ┌─ study_pack/official_ps/style.typ:16:8
@@ -20,17 +20,17 @@ warning: unknown font family: noto sans
 Detailed status: 1
 
 === Problems-only edition ===
-error: unknown variable: e·1
-    ┌─ study_pack/official_ps/ps1.typ:184:13
-    │
-184 │     $ e(2-x)=e·1+1·1=e+1 $
-    │              ^^^
-    │
-    = hint: if you meant to display multiple letters as is, try adding spaces between each letter: `e · 1`
-    = hint: or if you meant to display this as text, try placing it in quotes: `"e·1"`
+error: unknown variable: kW
+   ┌─ study_pack/official_ps/ps2.typ:42:25
+   │
+42 │   #formula([$ u(W)=-exp(-kW) $])
+   │                          ^^
+   │
+   = hint: if you meant to display multiple letters as is, try adding spaces between each letter: `k W`
+   = hint: or if you meant to display this as text, try placing it in quotes: `"kW"`
 
-  while including `ps1.typ` at study_pack/official_ps/content.typ:60:1
-    include "ps1.typ"
+  while including `ps2.typ` at study_pack/official_ps/content.typ:61:1
+    include "ps2.typ"
 
 warning: unknown font family: noto sans
    ┌─ study_pack/official_ps/style.typ:16:8
