@@ -1,0 +1,356 @@
+\chaptertitle{PS2 · 위험태도, 확실성등가와 위험프리미엄}{공식 Exercise 1--5 · CARA/CRRA, 기대효용, wealth effect, 확실성등가}
+
+\begin{sourcebox}
+\textbf{이 장의 공식 출처}: MBF\_PS2\_2024-2.pdf, MBF\_PS2\_Solution\_2024-2.pdf. 공식 문항의 인물·상황·금액을 그대로 사용했다.
+\end{sourcebox}
+
+\exercise{PS2 Exercise 1}{공식 문제}
+\begin{officialbox}
+Payoff A는 6면체 주사위를 한 번 던져 나온 눈만큼의 달러를 받는 복권이고, Payoff B는 확실하게 3달러를 받는 선택이다.
+\begin{enumerate}[label=(\alph*)]
+\item 초기부가 0인 Binh의 효용함수는 모든 $W>0$에 대해
+\[
+-\frac{WU''(W)}{U'(W)}=1
+\]
+을 만족한다. A와 B 중 무엇을 선택하는가?
+\item Guillaume의 효용함수는
+\[
+-\frac{u''(W)}{u'(W)}=k,\qquad k>0
+\]
+을 만족한다. 초기부 $Y_0=1$일 때 B를 선택한다는 사실을 알고 있다. 초기부가 충분히 커지면 선택을 바꾸는가? 바꾼다면 임계값을 구하고, 바꾸지 않는다면 그 이유를 설명하라.
+\end{enumerate}
+\end{officialbox}
+
+\begin{strategybox}
+주어진 식은 각각 상대위험회피도(RRA)와 절대위험회피도(ARA)다. 먼저 미분방정식에서 대표 효용함수를 복원한 뒤 기대효용을 비교한다.
+\end{strategybox}
+
+\begin{solutionbox}
+\step{(a) RRA가 1이면 로그효용}
+\[
+-\frac{WU''(W)}{U'(W)}=1
+\quad\Longrightarrow\quad
+\frac{U''(W)}{U'(W)}=-\frac1W.
+\]
+양변을 적분하면
+\[
+\ln U'(W)=-\ln W+C
+\quad\Longrightarrow\quad U'(W)=\frac{A}{W}.
+\]
+다시 적분하면 $U(W)=A\ln W+B$다. 양의 affine transformation은 선호를 바꾸지 않으므로 $U(W)=\ln W$로 둔다.
+
+A의 기대효용은
+\[
+V_A=\frac16\sum_{j=1}^6\ln j
+=\frac16\ln(1\cdot2\cdot3\cdot4\cdot5\cdot6)
+=\ln\left(720^{1/6}\right).
+\]
+B의 효용은
+\[
+V_B=\ln3.
+\]
+비교하면
+\[
+V_A<V_B
+\quad\Longleftrightarrow\quad
+720^{1/6}<3
+\quad\Longleftrightarrow\quad
+720<3^6=729.
+\]
+따라서 B를 선택한다.
+
+\step{(b) ARA가 일정하면 CARA 효용}
+\[
+-\frac{u''(W)}{u'(W)}=k
+\quad\Longrightarrow\quad
+u'(W)=Ce^{-kW}.
+\]
+대표 효용함수는
+\[
+u(W)=-e^{-kW}
+\]
+로 둘 수 있다. 초기부가 $Y_0$일 때 A의 기대효용은
+\[
+EU_A(Y_0)=-\frac16\sum_{j=1}^6 e^{-k(Y_0+j)}
+=-e^{-kY_0}\left(\frac16\sum_{j=1}^6e^{-kj}\right).
+\]
+B의 효용은
+\[
+U_B(Y_0)=-e^{-k(Y_0+3)}=-e^{-kY_0}e^{-3k}.
+\]
+두 식의 공통 양의 인자 $e^{-kY_0}$는 비교에서 소거된다. 따라서 A와 B의 순위는 $Y_0$와 무관하다. $Y_0=1$에서 B를 선택했다면 모든 초기부에서 B를 선택한다.
+\end{solutionbox}
+
+\begin{answerbox}
+\begin{enumerate}[label=(\alph*)]
+\item $U(W)=\ln W$로 나타낼 수 있고, $720<729$이므로 \textbf{Payoff B}를 선택한다.
+\item $u(W)=-e^{-kW}$인 CARA 선호에서는 초기부가 공통인자로 소거된다. 따라서 \textbf{선택을 바꾸지 않으며 임계 초기부도 없다}.
+\end{enumerate}
+\end{answerbox}
+
+\begin{warningbox}
+CARA의 ``wealth effect가 없다''는 말은 위험자산에 투자하는 \textbf{금액} 또는 주어진 복권의 선택이 초기부와 무관하다는 뜻이다. 모든 경제행동이 부와 무관하다는 뜻은 아니다.
+\end{warningbox}
+
+\exercise{PS2 Exercise 2}{공식 문제}
+\begin{officialbox}
+Raluca와 Yuki는 모두
+\[
+-\frac{WU''(W)}{U'(W)}=\frac12
+\]
+을 만족하는 선호와 초기부 1달러를 갖는다.
+\begin{enumerate}[label=(\alph*)]
+\item Argentina와 France가 각각 $1/2$ 확률로 이긴다고 생각한다. ``Argentina 승리 시 Raluca가 Yuki에게서 1달러를 받고, France 승리 시 반대로 지급''하는 내기에 두 사람 모두 동의하는가?
+\item Raluca는 Romania 승리확률을 $3/4$, Yuki는 Japan 승리확률을 $3/4$로 믿는다. 동일한 구조의 내기에 두 사람 모두 동의하는가?
+\end{enumerate}
+\end{officialbox}
+
+\begin{strategybox}
+RRA $\gamma=1/2$인 CRRA 효용은 $U(W)=2\sqrt W$로 둘 수 있다. 내기를 수락하면 각 사람의 최종부는 2 또는 0, 거절하면 1이다.
+\end{strategybox}
+
+\begin{solutionbox}
+\step{효용함수 복원}
+CRRA 대표효용은
+\[
+U(W)=\frac{W^{1-\gamma}}{1-\gamma}.
+\]
+$\gamma=1/2$를 넣으면
+\[
+U(W)=2\sqrt W.
+\]
+
+\step{(a) 객관적 50--50 내기}
+Raluca가 내기를 수락할 때 기대효용은
+\[
+\frac12U(2)+\frac12U(0)
+=\frac12(2\sqrt2)+\frac12(0)=\sqrt2.
+\]
+거절하면
+\[
+U(1)=2.
+\]
+$\sqrt2<2$이므로 Raluca는 거절한다. Yuki에게도 완전히 대칭이므로 Yuki도 거절한다.
+
+\step{(b) 서로 다른 주관적 믿음}
+Raluca는 자신이 2달러가 될 확률을 $3/4$로 본다.
+\[
+EU_R=\frac34U(2)+\frac14U(0)=\frac32\sqrt2.
+\]
+이를 $U(1)=2$와 비교하면
+\[
+\frac32\sqrt2\ge2
+\quad\Longleftrightarrow\quad
+\sqrt2\ge\frac43,
+\]
+이는 참이다. 따라서 Raluca는 수락한다. Yuki 역시 자신의 관점에서 승리확률을 $3/4$로 믿으므로 같은 계산으로 수락한다.
+\end{solutionbox}
+
+\begin{answerbox}
+\begin{enumerate}[label=(\alph*)]
+\item 둘 다 거절한다. 공정한 평균보존위험을 위험회피자가 선호하지 않기 때문이다.
+\item 둘 다 수락한다. 서로 다른 낙관적 믿음 때문에 각자 자신의 승리확률을 $3/4$로 평가한다.
+\end{enumerate}
+\end{answerbox}
+
+\begin{warningbox}
+(b)에서 실제로 양쪽이 동시에 $3/4$ 확률로 이길 수 있다는 뜻이 아니다. \textbf{주관적 확률이 서로 다르기 때문에} 거래가 성립한다는 문제다.
+\end{warningbox}
+
+\exercise{PS2 Exercise 3}{공식 문제}
+\begin{officialbox}
+Raluca의 선호는 모든 $W>0$에 대해
+\[
+-\frac{U''(W)}{U'(W)}=1
+\]
+을 만족하고 초기부는 1달러다.
+\begin{enumerate}[label=(\alph*)]
+\item 두 후보의 승리확률이 각각 $1/2$라고 생각할 때, 이기면 1달러를 받고 지면 1달러를 지급하는 내기를 수락하는가?
+\item 다른 선거에서 West가 이기면 1달러를 받고 Trump가 이기면 1달러를 지급하는 내기에 무차별이다. Raluca가 믿는 West의 승리확률을 구하라.
+\end{enumerate}
+\end{officialbox}
+
+\begin{strategybox}
+ARA가 1인 CARA 효용은 $U(W)=-e^{-W}$다. (a)는 공정한 위험의 거절, (b)는 기대효용과 확실한 부 1의 효용을 같게 두는 문제다.
+\end{strategybox}
+
+\begin{solutionbox}
+\step{(a)}
+내기를 수락하면 최종부는 $1/2$ 확률로 2, $1/2$ 확률로 0이다. 기대부는 1로서 거절할 때의 확실한 부 1과 같다. 그러나 $U''<0$인 위험회피자에게
+\[
+\frac12U(2)+\frac12U(0)<U\left(\frac12\cdot2+\frac12\cdot0\right)=U(1).
+\]
+따라서 거절한다.
+
+\step{(b)}
+West 승리확률을 $\pi$라 하자. 무차별조건은
+\[
+\pi U(2)+(1-\pi)U(0)=U(1).
+\]
+$U(W)=-e^{-W}$를 넣으면
+\[
+-\pi e^{-2}-(1-\pi)=-e^{-1}.
+\]
+정리하면
+\[
+\pi(1-e^{-2})=1-e^{-1},
+\]
+\[
+\pi=\frac{1-e^{-1}}{1-e^{-2}}
+=\frac{e}{1+e}\approx0.731.
+\]
+\end{solutionbox}
+
+\begin{answerbox}
+\[
+\text{(a) 거절},\qquad
+\text{(b) }\boxed{\pi=\frac{e}{1+e}\approx73.1\%}.
+\]
+\end{answerbox}
+
+\begin{warningbox}
+(a)에서 ``기대값이 같으므로 무차별''이라고 쓰면 위험중립자의 답이다. 위험회피에서는 Jensen 부등식으로 확실한 1을 더 선호한다.
+\end{warningbox}
+
+\exercise{PS2 Exercise 4}{공식 문제}
+\begin{officialbox}
+게임쇼에서 참가자는 500,000달러를 받고 그만두거나, 네 선택지 중 하나에 답한다. 정답이면 1,000,000달러, 오답이면 32,000달러를 받는다.
+\begin{enumerate}[label=(\alph*)]
+\item 초기부 0인 Liqian은 RRA가 1이다. 그녀는 현재 500,000달러 제안을 거절하고 답하지만, 확실히 650,000달러를 받을 수 있었다면 그만두었을 것이라고 말한다. 정답확률에 대한 그녀의 믿음을 구하고, 왜 답을 선택하는지 설명하라.
+\item 초기부 0인 Dario는 위험선호자이며 네 답이 모두 똑같이 가능하다고 생각한다. 그가 답할지 그만둘지 예측할 수 있는가?
+\end{enumerate}
+\end{officialbox}
+
+\begin{strategybox}
+Liqian은 로그효용을 가지며 650,000달러가 답하기 복권의 확실성등가다. Dario는 단순히 ``위험선호''라는 곡률 정보만 주어졌으므로 효용함수의 정확한 굽힘 정도가 필요하다.
+\end{strategybox}
+
+\begin{solutionbox}
+\step{(a) Liqian의 주관적 정답확률}
+$X_1=1{,}000{,}000$, $X_2=32{,}000$, 확실성등가를 $\widehat K=650{,}000$이라 하자. 정답확률을 $p$라 하면 로그효용의 무차별조건은
+\[
+p\ln X_1+(1-p)\ln X_2=\ln\widehat K.
+\]
+이를 풀면
+\[
+p=\frac{\ln(\widehat K/X_2)}{\ln(X_1/X_2)}
+=\frac{\ln(650{,}000/32{,}000)}{\ln(1{,}000{,}000/32{,}000)}
+\approx0.875.
+\]
+답하기 복권의 확실성등가는 650,000달러인데 실제 walk-away 금액은 500,000달러이므로
+\[
+CE(\text{답하기})=650{,}000>500{,}000.
+\]
+따라서 답한다.
+
+\step{(b) Dario}
+아무 정보가 없으므로 정답확률은 $1/4$이고 오답확률은 $3/4$다. 답하기의 기대금액은
+\[
+\frac14(1{,}000{,}000)+\frac34(32{,}000)=274{,}000,
+\]
+500,000달러보다 작다. 위험중립에 가까운 약한 위험선호자라면 그만둘 수 있다. 반면 효용함수가 충분히 강하게 볼록하면 1,000,000달러의 상방을 크게 평가하여 답할 수 있다. $u''(W)>0$만으로는 두 효용을 비교할 수 없다.
+\end{solutionbox}
+
+\begin{answerbox}
+\[
+\text{(a) }p\approx0.875\;(87.5\%),\qquad \text{Liqian은 답한다.}
+\]
+\[
+\text{(b) 판단 불가. 위험선호의 정도, 즉 효용함수의 정확한 곡률이 더 필요하다.}
+\]
+\end{answerbox}
+
+\begin{warningbox}
+위험선호라고 해서 기대금액이 더 낮은 모든 복권을 반드시 고르는 것은 아니다. ``볼록하다''는 방향만 알려 줄 뿐, 두 점 사이의 효용차 크기까지 정하지 않는다.
+\end{warningbox}
+
+\exercise{PS2 Exercise 5}{공식 문제}
+\begin{officialbox}
+Deal or No Deal에서 상자에는 10달러 또는 2달러가 각각 $1/2$ 확률로 들어 있다.
+\begin{enumerate}[label=(\alph*)]
+\item 초기부 1이고 RRA가 1인 Valérie에게 은행가가 상자를 5달러에 사겠다고 한다. 제안을 수락하는가? 효용곡선으로 설명하라.
+\item 초기부가 1보다 크면 결정을 바꾸는가? 바뀌는 임계 초기부를 구하라.
+\item 초기부 0이고 RRA가 2인 Pavel에게 은행가가 $B$를 제안한다. Pavel이 수락하는 최소 $B$를 구하라.
+\item Pavel의 상자에 대한 위험프리미엄 $\Pi$를 구하라.
+\end{enumerate}
+\end{officialbox}
+
+\begin{strategybox}
+Valérie는 로그효용, Pavel은 $U(W)=-1/W$로 나타낼 수 있다. ``Deal''과 ``No deal''의 최종부를 정확히 비교하고, 최소 제안액은 확실성등가이며 위험프리미엄은 기대값에서 확실성등가를 뺀 값이다.
+\end{strategybox}
+
+\begin{solutionbox}
+\step{(a) Valérie}
+초기부를 $Y=1$, 제안액을 $B=5$, 상자 금액을 $x_1=10$, $x_2=2$라 하자. Deal의 최종부는 $Y+B=6$이고 No deal의 최종부는 11 또는 3이다.
+\[
+\ln6\;\mathop{\gtrless}_{\text{No deal}}^{\text{Deal}}\;
+\frac12\ln11+\frac12\ln3.
+\]
+로그의 단조성을 이용하면
+\[
+\ln6>\frac12\ln(33)
+\quad\Longleftrightarrow\quad 36>33.
+\]
+따라서 Deal을 수락한다. 오목한 효용곡선에서 확실한 6의 효용이 11과 3의 기대효용보다 높다.
+
+\step{(b) 초기부의 임계값}
+일반적인 $Y$에서 Deal을 선택할 조건은
+\[
+\ln(Y+B)\ge\frac12\ln(Y+x_1)+\frac12\ln(Y+x_2).
+\]
+지수화하면
+\[
+(Y+B)^2\ge(Y+x_1)(Y+x_2).
+\]
+정리하면
+\[
+[2B-(x_1+x_2)]Y+B^2-x_1x_2\ge0.
+\]
+현재 수치를 넣으면
+\[
+-2Y+5\ge0
+\quad\Longleftrightarrow\quad Y\le\frac52.
+\]
+따라서 $Y=5/2$에서 무차별이고, $Y>5/2$이면 No deal을 택한다. CRRA 효용에서는 초기부가 증가하면 같은 절대금액 복권의 상대적 크기가 작아져 행동이 달라질 수 있다.
+
+\step{(c) Pavel의 최소 제안액}
+RRA가 2인 CRRA 효용은
+\[
+U(W)=\frac{W^{1-2}}{1-2}=-\frac1W
+\]
+로 둘 수 있다. 초기부가 0이므로 수락조건은
+\[
+-\frac1B\ge\frac12\left(-\frac1{10}\right)+\frac12\left(-\frac12\right).
+\]
+오른쪽은 $-3/10$이므로
+\[
+\frac1B\le\frac3{10}
+\quad\Longrightarrow\quad
+\boxed{B\ge\frac{10}{3}}.
+\]
+최소 제안액, 즉 확실성등가는 $\widehat B=10/3$이다.
+
+\step{(d) 위험프리미엄}
+상자의 기대금액은
+\[
+\E[\widetilde x]=\frac12(10)+\frac12(2)=6.
+\]
+따라서
+\[
+\Pi=\E[\widetilde x]-CE
+=6-\frac{10}{3}=\frac83.
+\]
+\end{solutionbox}
+
+\begin{answerbox}
+\begin{align*}
+\text{(a)}\quad &\text{Valérie는 5달러 제안을 수락한다.}\\
+\text{(b)}\quad &Y^*=\frac52;\;Y<\frac52\text{이면 Deal, }Y>\frac52\text{이면 No deal}.\\
+\text{(c)}\quad &B_{\min}=\frac{10}{3}.\\
+\text{(d)}\quad &\Pi=\frac83.
+\end{align*}
+\end{answerbox}
+
+\begin{warningbox}
+위험프리미엄은 $CE-\E[X]$가 아니라 \textbf{$\E[X]-CE$}다. 위험회피자라면 일반적으로 $CE<\E[X]$이므로 위험프리미엄은 양수다.
+\end{warningbox}

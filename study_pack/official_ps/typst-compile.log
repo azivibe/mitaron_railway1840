@@ -1,0 +1,41 @@
+=== Detailed edition ===
+error: unknown variable: kW
+   ┌─ study_pack/official_ps/ps2.typ:42:25
+   │
+42 │   #formula([$ u(W)=-exp(-kW) $])
+   │                          ^^
+   │
+   = hint: if you meant to display multiple letters as is, try adding spaces between each letter: `k W`
+   = hint: or if you meant to display this as text, try placing it in quotes: `"kW"`
+
+  while including `ps2.typ` at study_pack/official_ps/content.typ:61:1
+    include "ps2.typ"
+
+warning: unknown font family: noto sans
+   ┌─ study_pack/official_ps/style.typ:16:8
+   │
+16 │   font: ("Noto Sans CJK KR", "Noto Sans CJK JP", "Noto Sans"),
+   │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Detailed status: 1
+
+=== Problems-only edition ===
+error: unknown variable: kW
+   ┌─ study_pack/official_ps/ps2.typ:42:25
+   │
+42 │   #formula([$ u(W)=-exp(-kW) $])
+   │                          ^^
+   │
+   = hint: if you meant to display multiple letters as is, try adding spaces between each letter: `k W`
+   = hint: or if you meant to display this as text, try placing it in quotes: `"kW"`
+
+  while including `ps2.typ` at study_pack/official_ps/content.typ:61:1
+    include "ps2.typ"
+
+warning: unknown font family: noto sans
+   ┌─ study_pack/official_ps/style.typ:16:8
+   │
+16 │   font: ("Noto Sans CJK KR", "Noto Sans CJK JP", "Noto Sans"),
+   │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Problems-only status: 1

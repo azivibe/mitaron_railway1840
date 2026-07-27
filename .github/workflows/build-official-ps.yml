@@ -1,0 +1,80 @@
+name: Build official MBF problem guide
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'study_pack/official_ps/**/*.tex'
+      - '.github/workflows/build-official-ps.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: official-mbf-ps-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+          fetch-depth: 0
+
+      - name: Sanitize TeX source
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          for path in Path('study_pack/official_ps').glob('*.tex'):
+              text = path.read_text(encoding='utf-8')
+              text = text.replace('\x0crac', '\\frac')
+              path.write_text(text, encoding='utf-8')
+              if '\x0c' in text:
+                  raise SystemExit(f'unresolved form-feed in {path}')
+          PY
+
+      - name: Install XeLaTeX and Korean fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            latexmk texlive-xetex texlive-lang-korean texlive-latex-extra \
+            texlive-fonts-recommended texlive-pictures fonts-noto-cjk zip
+
+      - name: Compile detailed official guide
+        run: |
+          mkdir -p study_pack/output
+          set -o pipefail
+          cd study_pack/official_ps
+          latexmk -xelatex -interaction=nonstopmode -halt-on-error official_ps1_ps4_detailed.tex 2>&1 | tee xelatex-build.log
+          cp official_ps1_ps4_detailed.pdf ../output/MBF_PS1_PS4_Official_Detailed_Solutions_KO.pdf
+          cd ../output
+          zip -j MBF_PS1_PS4_Official_Detailed_Solutions_KO.zip MBF_PS1_PS4_Official_Detailed_Solutions_KO.pdf
+
+      - name: Commit generated PDF and build log
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -f \
+            study_pack/official_ps/xelatex-build.log \
+            study_pack/output/MBF_PS1_PS4_Official_Detailed_Solutions_KO.pdf \
+            study_pack/output/MBF_PS1_PS4_Official_Detailed_Solutions_KO.zip
+          if ! git diff --cached --quiet; then
+            git commit -m 'Build official MBF PS1-PS4 detailed solutions PDF'
+            git push origin HEAD:${{ github.head_ref || github.ref_name }}
+          fi
+
+      - name: Upload PDF bundle and log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: MBF_PS1_PS4_Official_Detailed_Solutions_KO
+          path: |
+            study_pack/output/MBF_PS1_PS4_Official_Detailed_Solutions_KO.pdf
+            study_pack/output/MBF_PS1_PS4_Official_Detailed_Solutions_KO.zip
+            study_pack/official_ps/xelatex-build.log
+          if-no-files-found: warn

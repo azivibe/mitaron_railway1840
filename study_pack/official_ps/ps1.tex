@@ -1,0 +1,454 @@
+\chaptertitle{PS1 · 일반균형과 Edgeworth Box}{공식 Exercise 1--4 · 소비자 최적화, 시장청산, 계약곡선, 재분배와 가격개입}
+
+\begin{sourcebox}
+\textbf{이 장의 공식 출처}: MBF\_PS1-2.pdf, MBF\_PS1\_Solution-2.pdf. 문제의 수치와 효용함수는 그대로 두고, 공식 해설의 계산 사이를 시험 답안 수준으로 보충했다.
+\end{sourcebox}
+
+\exercise{PS1 Exercise 1}{공식 문제}
+\begin{officialbox}
+두 소비자 $i=a,b$와 두 재화 $j=1,2$가 있는 순수교환경제를 생각한다.
+\[
+(e_{a,1},e_{a,2})=(0,2),\qquad U_a(c_{a,1},c_{a,2})=c_{a,1}+\ln c_{a,2},
+\]
+\[
+(e_{b,1},e_{b,2})=(2,0),\qquad U_b(c_{b,1},c_{b,2})=c_{b,1}^{1/4}c_{b,2}^{3/4}.
+\]
+재화 $j$의 가격을 $p_j$라 한다.
+\begin{enumerate}[label=(\alph*)]
+\item 경쟁균형 가격과 배분을 구하라.
+\item Edgeworth box에 무차별곡선, 예산선, 계약곡선과 경쟁균형을 표시하라.
+\item 시장이 열리기 전에 재화 2만 재분배하여 새 부존량을 $(0,2-x)$와 $(2,x)$로 만들 수 있다. 경쟁균형에서 $c_{a,1}=c_{b,1}=1$을 달성하려면 $x$를 얼마로 해야 하는가? 새 경쟁균형도 구하라.
+\item 소비자 $b$의 효용함수가 $\widehat U_b=\ln c_{b,1}+3\ln c_{b,2}$라면 경쟁균형은 어떻게 바뀌는가?
+\end{enumerate}
+\end{officialbox}
+
+\begin{strategybox}
+각 소비자의 \textbf{부존가치가 소득}이다. 개인별 최적화로 수요함수를 만든 뒤, 한 재화의 시장청산으로 상대가격을 구한다. 두 재화 경제에서는 Walras 법칙 때문에 한 시장이 청산되고 예산제약이 만족되면 다른 시장도 청산된다.
+\end{strategybox}
+
+\begin{solutionbox}
+\step{(a) 소비자 $a$의 수요함수}
+$a$의 소득은 $0\cdot p_1+2p_2=2p_2$이다.
+\[
+\max_{c_{a,1},c_{a,2}}\;c_{a,1}+\ln c_{a,2}
+\quad\text{s.t.}\quad p_1c_{a,1}+p_2c_{a,2}=2p_2.
+\]
+Lagrangian은
+\[
+\mathcal L_a=c_{a,1}+\ln c_{a,2}
+-\lambda\bigl(p_1c_{a,1}+p_2c_{a,2}-2p_2\bigr).
+\]
+FOC는
+\[
+1=\lambda p_1,\qquad \frac1{c_{a,2}}=\lambda p_2.
+\]
+첫 식에서 $\lambda=1/p_1$이므로
+\[
+\frac1{c_{a,2}}=\frac{p_2}{p_1}
+\quad\Longrightarrow\quad c_{a,2}=\frac{p_1}{p_2}.
+\]
+이를 예산제약에 넣으면
+\[
+c_{a,1}=\frac{2p_2}{p_1}-1.
+\]
+따라서
+\[
+\boxed{c_{a,1}(p)=\frac{2p_2}{p_1}-1,\qquad c_{a,2}(p)=\frac{p_1}{p_2}}.
+\]
+
+\step{소비자 $b$의 수요함수}
+$b$의 소득은 $2p_1$이다. Cobb--Douglas 효용에서 재화 1과 2의 지출비중은 각각 $1/4$, $3/4$이므로
+\[
+c_{b,1}=\frac14\frac{2p_1}{p_1}=\frac12,
+\qquad
+c_{b,2}=\frac34\frac{2p_1}{p_2}=\frac32\frac{p_1}{p_2}.
+\]
+FOC의 비율로 확인하면
+\[
+\frac{MU_{b,1}}{MU_{b,2}}
+=\frac{c_{b,2}}{3c_{b,1}}=\frac{p_1}{p_2}
+\]
+도 동일한 결과를 준다.
+
+\step{시장청산과 상대가격}
+재화 1의 총부존량은 2이므로
+\[
+c_{a,1}+c_{b,1}=2.
+\]
+수요함수를 대입하면
+\[
+\frac{2p_2}{p_1}-1+\frac12=2
+\quad\Longrightarrow\quad
+\frac{p_1}{p_2}=\frac45.
+\]
+가격수준 자체는 임의이므로 $p_1=1$로 정규화하면
+\[
+(p_1,p_2)=\left(1,\frac54\right).
+\]
+수요함수에 대입하여
+\[
+(c_{a,1},c_{a,2})=\left(\frac32,\frac45\right),
+\qquad
+(c_{b,1},c_{b,2})=\left(\frac12,\frac65\right).
+\]
+두 소비자의 소비를 합하면 각 재화 모두 2가 되어 시장청산도 확인된다.
+
+\step{(b) 계약곡선}
+내부 Pareto 최적배분에서는 두 소비자의 MRS가 같아야 한다.
+\[
+MRS_a=\frac{MU_{a,1}}{MU_{a,2}}=c_{a,2},
+\qquad
+MRS_b=\frac{MU_{b,1}}{MU_{b,2}}=\frac{c_{b,2}}{3c_{b,1}}.
+\]
+자원제약 $c_{b,1}=2-c_{a,1}$, $c_{b,2}=2-c_{a,2}$를 넣으면
+\[
+c_{a,2}=\frac{2-c_{a,2}}{3(2-c_{a,1})}.
+\]
+정리하면
+\[
+\boxed{c_{a,2}=\frac{2}{7-3c_{a,1}}}.
+\]
+경쟁균형점 $E=(3/2,4/5)$는 이 계약곡선 위에 있고, 예산선은 초기부존점 $I=(0,2)$와 $E$를 지나며 기울기는
+\[
+-\frac{p_1}{p_2}=-\frac45
+\]
+이다.
+
+\step{(c) 목표배분에서 역으로 가격과 부존을 찾기}
+목표는 $c_{a,1}=c_{b,1}=1$이다. 경쟁균형은 Pareto 효율적이므로 목표배분은 계약곡선 위에 있어야 한다.
+\[
+c_{a,2}=\frac{2}{7-3\cdot1}=\frac12,
+\qquad c_{b,2}=2-\frac12=\frac32.
+\]
+목표점에서
+\[
+\frac{p_1}{p_2}=MRS_a=c_{a,2}=\frac12.
+\]
+$(p_1,p_2)=(1,2)$로 정규화한다. 재분배 후 $a$의 소득은 $(2-x)p_2=2(2-x)$이고, 목표소비의 비용은
+\[
+p_1\cdot1+p_2\cdot\frac12=1+1=2.
+\]
+따라서
+\[
+2(2-x)=2\quad\Longrightarrow\quad \boxed{x=1}.
+\]
+새 경쟁균형은
+\[
+(p_1,p_2)=(1,2),\qquad
+(c_a,c_b)=\left(\left(1,\frac12\right),\left(1,\frac32\right)\right).
+\]
+
+\step{(d) 효용함수의 단조변환}
+원래 효용함수에 로그를 취하고 4를 곱하면
+\[
+4\ln U_b
+=4\ln\left(c_{b,1}^{1/4}c_{b,2}^{3/4}\right)
+=\ln c_{b,1}+3\ln c_{b,2}=\widehat U_b.
+\]
+$\widehat U_b$는 $U_b$의 증가변환이므로 동일한 선호와 동일한 무차별곡선을 나타낸다. 따라서 수요와 경쟁균형은 전혀 바뀌지 않는다.
+\end{solutionbox}
+
+\begin{answerbox}
+\begin{align*}
+\text{(a)}\quad &\frac{p_1}{p_2}=\frac45,\quad (p_1,p_2)=\left(1,\frac54\right),\\
+&(c_a,c_b)=\left(\left(\frac32,\frac45\right),\left(\frac12,\frac65\right)\right).\\[2mm]
+\text{(b)}\quad &c_{a,2}=\frac{2}{7-3c_{a,1}},\qquad \text{예산선 기울기 }-\frac45.\\[2mm]
+\text{(c)}\quad &x=1,\quad (p_1,p_2)=(1,2),\\
+&(c_a,c_b)=\left(\left(1,\frac12\right),\left(1,\frac32\right)\right).\\[2mm]
+\text{(d)}\quad &\text{증가변환이므로 경쟁균형은 변하지 않는다.}
+\end{align*}
+\end{answerbox}
+
+\begin{warningbox}
+가격을 하나의 숫자로만 쓰지 말고 \textbf{정규화 기준}을 밝혀야 한다. 또한 계약곡선은 단순히 두 자산점을 잇는 선이 아니라 $MRS_a=MRS_b$와 자원제약을 함께 풀어야 한다.
+\end{warningbox}
+
+\exercise{PS1 Exercise 2}{공식 문제}
+\begin{officialbox}
+두 소비자의 부존량과 효용함수는
+\[
+(e_a)=(2,0),\quad U_a=c_{a,1}-e^{-c_{a,2}},
+\qquad
+(e_b)=(0,2),\quad U_b=c_{b,1}-e^{-c_{b,2}}.
+\]
+\begin{enumerate}[label=(\alph*)]
+\item 경쟁균형을 구하라.
+\item Edgeworth box에 무차별곡선, 예산선, 계약곡선과 경쟁균형을 표시하라.
+\item 재화 1만 재분배하여 부존량을 $(2-x,0)$와 $(x,2)$로 만들 수 있다. 경쟁균형에서 $c_{a,1}=1$을 달성하려면 $x$는 얼마인가? 새 경쟁균형도 구하라.
+\end{enumerate}
+\end{officialbox}
+
+\begin{strategybox}
+두 소비자의 효용이 준선형이고 동일하다. FOC에서 두 사람 모두 $c_2=\ln(p_1/p_2)$를 선택한다. 재화 2 시장청산이 상대가격을 바로 결정한다.
+\end{strategybox}
+
+\begin{solutionbox}
+\step{(a) 소비자 $a$}
+$a$의 소득은 $2p_1$이다.
+\[
+\mathcal L_a=c_{a,1}-e^{-c_{a,2}}
+-\lambda(p_1c_{a,1}+p_2c_{a,2}-2p_1).
+\]
+FOC는
+\[
+1=\lambda p_1,\qquad e^{-c_{a,2}}=\lambda p_2.
+\]
+따라서
+\[
+e^{-c_{a,2}}=\frac{p_2}{p_1}
+\quad\Longrightarrow\quad
+c_{a,2}=\ln\frac{p_1}{p_2}.
+\]
+예산제약에서
+\[
+c_{a,1}=2-\frac{p_2}{p_1}\ln\frac{p_1}{p_2}
+=2+\frac{p_2}{p_1}\ln\frac{p_2}{p_1}.
+\]
+
+\step{소비자 $b$}
+$b$의 소득은 $2p_2$이며 동일한 FOC로
+\[
+c_{b,2}=\ln\frac{p_1}{p_2},
+\qquad
+c_{b,1}=\frac{p_2}{p_1}\left(2+\ln\frac{p_2}{p_1}\right).
+\]
+
+\step{시장청산}
+재화 2의 총량은 2이므로
+\[
+2\ln\frac{p_1}{p_2}=2
+\quad\Longrightarrow\quad
+\frac{p_1}{p_2}=e.
+\]
+$p_2=1$로 정규화하면 $(p_1,p_2)=(e,1)$이다. 수요함수에 대입하면
+\[
+(c_a,c_b)=\left(\left(2-\frac1e,1\right),\left(\frac1e,1\right)\right).
+\]
+
+\step{(b) 계약곡선}
+\[
+MRS_i=\frac{MU_{i,1}}{MU_{i,2}}=e^{c_{i,2}},\qquad i=a,b.
+\]
+내부 효율성 조건은
+\[
+e^{c_{a,2}}=e^{c_{b,2}}
+\quad\Longrightarrow\quad c_{a,2}=c_{b,2}.
+\]
+총량이 2이므로
+\[
+\boxed{c_{a,2}=c_{b,2}=1}.
+\]
+계약곡선은 Edgeworth box 안의 수평선 $c_{a,2}=1$이고, 예산선 기울기는 $-p_1/p_2=-e$이다.
+
+\step{(c) 재분배}
+목표 $c_{a,1}=1$과 계약곡선을 함께 적용하면 목표배분은
+\[
+(c_a,c_b)=((1,1),(1,1)).
+\]
+목표점의 MRS가 $e$이므로 가격비율도 $p_1/p_2=e$이다. $(p_1,p_2)=(e,1)$로 두면 $a$의 목표소비 비용은 $e+1$이고 재분배 후 부존가치는 $e(2-x)$다.
+\[
+e(2-x)=e+1
+\quad\Longrightarrow\quad
+\boxed{x=1-\frac1e}.
+\]
+\end{solutionbox}
+
+\begin{answerbox}
+\begin{align*}
+\text{(a)}\quad &(p_1,p_2)=(e,1),\\
+&(c_a,c_b)=\left(\left(2-\frac1e,1\right),\left(\frac1e,1\right)\right).\\
+\text{(b)}\quad &\text{계약곡선은 }c_{a,2}=1,\quad\text{예산선 기울기는 }-e.\\
+\text{(c)}\quad &x=1-\frac1e,\quad (c_a,c_b)=((1,1),(1,1)),\quad(p_1,p_2)=(e,1).
+\end{align*}
+\end{answerbox}
+
+\begin{warningbox}
+$e^{-c_2}=p_2/p_1$에서 로그를 취할 때 부호를 틀리지 말 것. $c_2=\ln(p_1/p_2)$다. 또한 준선형 효용이라도 예산제약과 비음조건을 확인해야 한다.
+\end{warningbox}
+
+\exercise{PS1 Exercise 3}{공식 문제}
+\begin{officialbox}
+\[
+(e_a)=(3,1),\quad U_a=\sqrt{c_{a,1}c_{a,2}},
+\qquad
+(e_b)=(1,3),\quad U_b=\ln c_{b,1}+\ln c_{b,2}.
+\]
+\begin{enumerate}[label=(\alph*)]
+\item 경쟁균형을 구하고 Edgeworth box에 무차별곡선, 예산선, 계약곡선을 표시하라.
+\item 사회계획자가 모든 재화를 $a$에게서 빼앗아 $b$에게 주어 $((0,0),(4,4))$로 만들었다. ``$a$가 아무것도 받지 못하므로 (a)의 배분보다 나쁘다''는 말에 경제학적으로 어떻게 답할 것인가?
+\end{enumerate}
+\end{officialbox}
+
+\begin{strategybox}
+두 효용은 표현만 다를 뿐 모두 두 재화에 동일한 지출비중을 갖는다. 시장청산으로 가격비율이 1이 나온다. (b)는 \textbf{Pareto 효율성과 공정성의 구분}을 묻는다.
+\end{strategybox}
+
+\begin{solutionbox}
+\step{(a) 개인별 수요}
+$a$의 소득은 $3p_1+p_2$다. 효용은 Cobb--Douglas $1/2$--$1/2$이므로
+\[
+c_{a,1}=\frac{3p_1+p_2}{2p_1}
+=\frac32+\frac12\left(\frac{p_1}{p_2}\right)^{-1},
+\]
+\[
+c_{a,2}=\frac{3p_1+p_2}{2p_2}
+=\frac12+\frac32\frac{p_1}{p_2}.
+\]
+$b$의 효용 $\ln c_{b,1}+\ln c_{b,2}$도 두 재화에 절반씩 지출하므로
+\[
+c_{b,1}=\frac{p_1+3p_2}{2p_1}
+=\frac12+\frac32\left(\frac{p_1}{p_2}\right)^{-1},
+\]
+\[
+c_{b,2}=\frac{p_1+3p_2}{2p_2}
+=\frac32+\frac12\frac{p_1}{p_2}.
+\]
+재화 1 시장청산은
+\[
+c_{a,1}+c_{b,1}=4
+\quad\Longrightarrow\quad \frac{p_1}{p_2}=1.
+\]
+$p_2=1$로 정규화하면
+\[
+(p_1,p_2)=(1,1),\qquad (c_a,c_b)=((2,2),(2,2)).
+\]
+
+\step{계약곡선}
+두 소비자의 MRS는
+\[
+MRS_a=\frac{c_{a,2}}{c_{a,1}},
+\qquad
+MRS_b=\frac{c_{b,2}}{c_{b,1}}.
+\]
+자원제약을 넣어
+\[
+\frac{c_{a,2}}{c_{a,1}}
+=\frac{4-c_{a,2}}{4-c_{a,1}}
+\quad\Longrightarrow\quad
+\boxed{c_{a,1}=c_{a,2}}.
+\]
+균형점 $(2,2)$는 이 45도 계약곡선 위에 있고 예산선 기울기는 $-1$이다.
+
+\step{(b) 효율성과 공정성}
+배분 $((0,0),(4,4))$는 Edgeworth box의 모서리다. 여기서 $a$에게 양의 재화를 조금이라도 주려면 총량이 고정되어 있으므로 $b$의 재화를 줄여야 한다. 두 사람 모두 재화를 더 선호하므로 $b$를 악화시키지 않고 $a$를 개선할 수 없다. 따라서 이 배분은 Pareto 효율적이다.
+
+그러나 Pareto 기준은 두 효율적 배분 중 어느 것이 더 ``공정''한지 순위를 매기지 못한다. (a)의 균형배분과 모서리 배분은 모두 효율적일 수 있고, 공정성·평등성 판단에는 별도의 사회후생함수나 분배규범이 필요하다.
+\end{solutionbox}
+
+\begin{answerbox}
+\[
+(p_1,p_2)=(1,1),\qquad (c_a,c_b)=((2,2),(2,2)),\qquad
+\text{계약곡선 }c_{a,1}=c_{a,2}.
+\]
+$((0,0),(4,4))$도 Pareto 효율적이므로 Pareto 기준만으로 (a)보다 ``나쁘다''고 말할 수 없다. 다만 공정하다는 뜻도 아니다.
+\end{answerbox}
+
+\begin{warningbox}
+``Pareto efficient''를 ``공정하다'' 또는 ``모두가 행복하다''로 번역하면 오답이다. 효율성은 낭비가 없다는 조건이지 분배의 정의를 보장하지 않는다.
+\end{warningbox}
+
+\exercise{PS1 Exercise 4}{공식 문제}
+\begin{officialbox}
+\[
+(e_a)=(3,0),\quad U_a=\sqrt{c_{a,1}}+\frac{c_{a,2}}2,
+\qquad
+(e_b)=(0,3),\quad U_b=\frac{c_{b,1}}2+\sqrt{c_{b,2}}.
+\]
+\begin{enumerate}[label=(\alph*)]
+\item 경쟁균형을 구하라. 힌트: $x^3+3x^2-3x-1=(x^2+4x+1)(x-1)$.
+\item Edgeworth box에 경쟁균형, 무차별곡선, 예산선과 계약곡선을 표시하라.
+\item 정부가 재화 1의 가격만 $p_1=3$으로 고정한다. 재화 2 가격은 시장에서 결정된다. 결과적 균형과 (a) 대비 후생변화를 설명하라.
+\end{enumerate}
+\end{officialbox}
+
+\begin{strategybox}
+상대가격 $q=p_1/p_2$를 정의해 수요를 모두 $q$로 표현한다. 힌트의 3차식은 시장청산에서 나온다. (c)는 절대가격이 아니라 상대가격이 실질배분을 결정한다는 점을 묻는다.
+\end{strategybox}
+
+\begin{solutionbox}
+\step{(a) 소비자 $a$}
+$a$의 소득은 $3p_1$이다. Lagrangian의 FOC는
+\[
+\frac1{2\sqrt{c_{a,1}}}=\lambda p_1,
+\qquad
+\frac12=\lambda p_2.
+\]
+두 식의 비율을 취하면
+\[
+\frac1{\sqrt{c_{a,1}}}=\frac{p_1}{p_2}=q
+\quad\Longrightarrow\quad c_{a,1}=q^{-2}.
+\]
+예산제약에서
+\[
+c_{a,2}=3q-q^{-1}.
+\]
+
+\step{소비자 $b$}
+$b$의 소득은 $3p_2$다. FOC는
+\[
+\frac12=\gamma p_1,
+\qquad
+\frac1{2\sqrt{c_{b,2}}}=\gamma p_2.
+\]
+따라서
+\[
+\sqrt{c_{b,2}}=q,\qquad c_{b,2}=q^2,\qquad
+c_{b,1}=\frac3q-q.
+\]
+
+\step{시장청산}
+재화 1 시장청산은
+\[
+q^{-2}+\frac3q-q=3.
+\]
+$q^2$를 곱해 정리하면
+\[
+q^3+3q^2-3q-1=0.
+\]
+힌트의 인수분해를 쓰면
+\[
+(q^2+4q+1)(q-1)=0.
+\]
+$q^2+4q+1=0$의 두 근은 음수이므로 양의 상대가격은
+\[
+\boxed{q=\frac{p_1}{p_2}=1}.
+\]
+$(p_1,p_2)=(1,1)$로 정규화하면
+\[
+(c_a,c_b)=((1,2),(2,1)).
+\]
+
+\step{(b) 계약곡선}
+\[
+MRS_a=\frac{1}{\sqrt{c_{a,1}}},
+\qquad
+MRS_b=\sqrt{c_{b,2}}=\sqrt{3-c_{a,2}}.
+\]
+따라서
+\[
+\frac1{\sqrt{c_{a,1}}}=\sqrt{3-c_{a,2}}
+\quad\Longrightarrow\quad
+\boxed{c_{a,2}=3-\frac1{c_{a,1}}}.
+\]
+예산선은 초기부존점 $(3,0)$과 균형점 $(1,2)$를 지나며 기울기는 $-1$이다.
+
+\step{(c) 정부의 $p_1=3$ 고정}
+재화 2의 가격은 자유롭게 조정된다. 시장청산이 요구하는 상대가격은 여전히
+\[
+\frac{p_1}{p_2}=1.
+\]
+$p_1=3$이므로 $p_2=3$이 된다. 가격벡터가 $(1,1)$에서 $(3,3)$으로 세 배가 되었지만 상대가격과 각 소비자의 실질소득은 동일하다. 따라서 수요, 배분과 효용은 모두 변하지 않는다.
+\end{solutionbox}
+
+\begin{answerbox}
+\begin{align*}
+\text{(a)}\quad &(p_1,p_2)=(1,1),\quad(c_a,c_b)=((1,2),(2,1)).\\
+\text{(b)}\quad &c_{a,2}=3-\frac1{c_{a,1}},\quad\text{예산선 기울기 }-1.\\
+\text{(c)}\quad &(p_1,p_2)=(3,3),\quad(c_a,c_b)=((1,2),(2,1)),\\
+&\text{두 소비자의 효용은 (a)와 동일하다.}
+\end{align*}
+\end{answerbox}
+
+\begin{warningbox}
+정부가 한 가격의 \textbf{명목수준}만 고정하고 다른 가격이 자유롭게 움직이면, 균형 상대가격을 그대로 복원할 수 있다. $p_1=3$만 보고 상대가격이 3이라고 처리하면 안 된다.
+\end{warningbox}
