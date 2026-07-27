@@ -1,12 +1,12 @@
 === Detailed edition ===
-error: unknown variable: MRS
-   ┌─ study_pack/official_ps/ps1.typ:76:14
-   │
-76 │   #formula([$ MRS_a=frac(MU_(a,1),MU_(a,2))=c_(a,2) $])
-   │               ^^^
-   │
-   = hint: if you meant to display multiple letters as is, try adding spaces between each letter: `M R S`
-   = hint: or if you meant to display this as text, try placing it in quotes: `"MRS"`
+error: unknown variable: e·1
+    ┌─ study_pack/official_ps/ps1.typ:184:13
+    │
+184 │     $ e(2-x)=e·1+1·1=e+1 $
+    │              ^^^
+    │
+    = hint: if you meant to display multiple letters as is, try adding spaces between each letter: `e · 1`
+    = hint: or if you meant to display this as text, try placing it in quotes: `"e·1"`
 
   while including `ps1.typ` at study_pack/official_ps/content.typ:60:1
     include "ps1.typ"
@@ -20,14 +20,14 @@ warning: unknown font family: noto sans
 Detailed status: 1
 
 === Problems-only edition ===
-error: unknown variable: MRS
-   ┌─ study_pack/official_ps/ps1.typ:76:14
-   │
-76 │   #formula([$ MRS_a=frac(MU_(a,1),MU_(a,2))=c_(a,2) $])
-   │               ^^^
-   │
-   = hint: if you meant to display multiple letters as is, try adding spaces between each letter: `M R S`
-   = hint: or if you meant to display this as text, try placing it in quotes: `"MRS"`
+error: unknown variable: e·1
+    ┌─ study_pack/official_ps/ps1.typ:184:13
+    │
+184 │     $ e(2-x)=e·1+1·1=e+1 $
+    │              ^^^
+    │
+    = hint: if you meant to display multiple letters as is, try adding spaces between each letter: `e · 1`
+    = hint: or if you meant to display this as text, try placing it in quotes: `"e·1"`
 
   while including `ps1.typ` at study_pack/official_ps/content.typ:60:1
     include "ps1.typ"
