@@ -54,6 +54,13 @@ jobs:
             '#let maybe_solution(title, body) = if show_solutions { solution(title, body) } else { none }' \
             '#let maybe_key(body) = if show_solutions { key(body) } else { none }' \
             '#let maybe_caution(body) = if show_solutions { caution(body) } else { none }' \
+            '#let MRS = math.op("MRS")' \
+            '#let MU = math.op("MU")' \
+            '#let ARA = math.op("ARA")' \
+            '#let RRA = math.op("RRA")' \
+            '#let MVP = math.op("MVP")' \
+            '#let SR = math.op("SR")' \
+            '#let CE = math.op("CE")' \
             >> study_pack/official_ps/style.typ
           for f in content.typ ps1.typ ps2.typ ps3.typ ps4.typ; do
             sed -i '1i #import "style.typ": *' "study_pack/official_ps/${f}"
