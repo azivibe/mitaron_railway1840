@@ -33,26 +33,38 @@ jobs:
       - name: Compile PDFs
         run: |
           mkdir -p study_pack/output
-          typst compile study_pack/official_ps/main.typ study_pack/output/MBF_PS1-PS4_Official_Problems_Detailed_Solutions_KO.pdf
-          typst compile study_pack/official_ps/problems_only.typ study_pack/output/MBF_PS1-PS4_Official_Problems_Only_KO.pdf
-          cd study_pack/output
-          zip -j MBF_PS1-PS4_Official_Set_KO.zip \
-            MBF_PS1-PS4_Official_Problems_Detailed_Solutions_KO.pdf \
-            MBF_PS1-PS4_Official_Problems_Only_KO.pdf
+          set +e
+          {
+            echo '=== Detailed edition ==='
+            typst compile study_pack/official_ps/main.typ study_pack/output/MBF_PS1-PS4_Official_Problems_Detailed_Solutions_KO.pdf
+            STATUS_DETAILED=$?
+            echo "Detailed status: ${STATUS_DETAILED}"
+            echo
+            echo '=== Problems-only edition ==='
+            typst compile study_pack/official_ps/problems_only.typ study_pack/output/MBF_PS1-PS4_Official_Problems_Only_KO.pdf
+            STATUS_PROBLEMS=$?
+            echo "Problems-only status: ${STATUS_PROBLEMS}"
+          } 2>&1 | tee study_pack/output/typst-compile.log
+          if [ -f study_pack/output/MBF_PS1-PS4_Official_Problems_Detailed_Solutions_KO.pdf ] && [ -f study_pack/output/MBF_PS1-PS4_Official_Problems_Only_KO.pdf ]; then
+            cd study_pack/output
+            zip -j MBF_PS1-PS4_Official_Set_KO.zip \
+              MBF_PS1-PS4_Official_Problems_Detailed_Solutions_KO.pdf \
+              MBF_PS1-PS4_Official_Problems_Only_KO.pdf
+          fi
+          exit 0
 
-      - name: Commit generated files
+      - name: Commit generated files and compile log
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add study_pack/output/MBF_PS1-PS4_Official_Problems_Detailed_Solutions_KO.pdf
-          git add study_pack/output/MBF_PS1-PS4_Official_Problems_Only_KO.pdf
-          git add study_pack/output/MBF_PS1-PS4_Official_Set_KO.zip
+          git add study_pack/output
           if ! git diff --cached --quiet; then
             git commit -m 'Build official MBF PS1-PS4 study PDFs'
             git push origin HEAD:${{ github.head_ref || github.ref_name }}
           fi
 
-      - name: Upload PDF bundle
+      - name: Upload PDF bundle and log
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: MBF_PS1-PS4_Official_Set_KO
@@ -60,3 +72,5 @@ jobs:
             study_pack/output/MBF_PS1-PS4_Official_Problems_Detailed_Solutions_KO.pdf
             study_pack/output/MBF_PS1-PS4_Official_Problems_Only_KO.pdf
             study_pack/output/MBF_PS1-PS4_Official_Set_KO.zip
+            study_pack/output/typst-compile.log
+          if-no-files-found: warn
