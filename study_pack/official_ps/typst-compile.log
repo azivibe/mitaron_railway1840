@@ -1,0 +1,39 @@
+=== Detailed edition ===
+error: unknown variable: show-solutions
+  ┌─ study_pack/official_ps/content.typ:7:6
+  │
+7 │   #if show-solutions [
+  │       ^^^^^^^^^^^^^^
+  │
+  = hint: if you meant to use subtraction, try adding spaces around the minus sign: `show - solutions`
+
+  while including `content.typ` at study_pack/official_ps/main.typ:6:1
+    include "content.typ"
+
+warning: unknown font family: noto sans
+   ┌─ study_pack/official_ps/style.typ:16:8
+   │
+16 │   font: ("Noto Sans CJK KR", "Noto Sans CJK JP", "Noto Sans"),
+   │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Detailed status: 1
+
+=== Problems-only edition ===
+error: unknown variable: show-solutions
+  ┌─ study_pack/official_ps/content.typ:7:6
+  │
+7 │   #if show-solutions [
+  │       ^^^^^^^^^^^^^^
+  │
+  = hint: if you meant to use subtraction, try adding spaces around the minus sign: `show - solutions`
+
+  while including `content.typ` at study_pack/official_ps/problems_only.typ:6:1
+    include "content.typ"
+
+warning: unknown font family: noto sans
+   ┌─ study_pack/official_ps/style.typ:16:8
+   │
+16 │   font: ("Noto Sans CJK KR", "Noto Sans CJK JP", "Noto Sans"),
+   │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Problems-only status: 1
