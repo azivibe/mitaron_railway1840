@@ -37,12 +37,14 @@ jobs:
       - name: Compile PDFs
         run: |
           mkdir -p study_pack/output
-          # Normalize helper identifiers and make every included module self-contained.
+          # Normalize helper identifiers and a few compact math tokens used in the draft.
           sed -i \
             -e 's/show-solutions/show_solutions/g' \
             -e 's/maybe-solution/maybe_solution/g' \
             -e 's/maybe-key/maybe_key/g' \
             -e 's/maybe-caution/maybe_caution/g' \
+            -e 's/e·1/e dot 1/g' \
+            -e 's/1·1/1 dot 1/g' \
             study_pack/official_ps/content.typ \
             study_pack/official_ps/ps1.typ \
             study_pack/official_ps/ps2.typ \
