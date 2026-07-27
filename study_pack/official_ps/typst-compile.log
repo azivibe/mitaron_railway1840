@@ -1,12 +1,15 @@
 === Detailed edition ===
-error: unknown variable: show_solutions
-  ┌─ study_pack/official_ps/content.typ:7:6
-  │
-7 │   #if show_solutions [
-  │       ^^^^^^^^^^^^^^
+error: unknown variable: MRS
+   ┌─ study_pack/official_ps/ps1.typ:76:14
+   │
+76 │   #formula([$ MRS_a=frac(MU_(a,1),MU_(a,2))=c_(a,2) $])
+   │               ^^^
+   │
+   = hint: if you meant to display multiple letters as is, try adding spaces between each letter: `M R S`
+   = hint: or if you meant to display this as text, try placing it in quotes: `"MRS"`
 
-  while including `content.typ` at study_pack/official_ps/main.typ:6:1
-    include "content.typ"
+  while including `ps1.typ` at study_pack/official_ps/content.typ:60:1
+    include "ps1.typ"
 
 warning: unknown font family: noto sans
    ┌─ study_pack/official_ps/style.typ:16:8
@@ -17,14 +20,17 @@ warning: unknown font family: noto sans
 Detailed status: 1
 
 === Problems-only edition ===
-error: unknown variable: show_solutions
-  ┌─ study_pack/official_ps/content.typ:7:6
-  │
-7 │   #if show_solutions [
-  │       ^^^^^^^^^^^^^^
+error: unknown variable: MRS
+   ┌─ study_pack/official_ps/ps1.typ:76:14
+   │
+76 │   #formula([$ MRS_a=frac(MU_(a,1),MU_(a,2))=c_(a,2) $])
+   │               ^^^
+   │
+   = hint: if you meant to display multiple letters as is, try adding spaces between each letter: `M R S`
+   = hint: or if you meant to display this as text, try placing it in quotes: `"MRS"`
 
-  while including `content.typ` at study_pack/official_ps/problems_only.typ:6:1
-    include "content.typ"
+  while including `ps1.typ` at study_pack/official_ps/content.typ:60:1
+    include "ps1.typ"
 
 warning: unknown font family: noto sans
    ┌─ study_pack/official_ps/style.typ:16:8
