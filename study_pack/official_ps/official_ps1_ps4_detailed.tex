@@ -1,0 +1,167 @@
+\documentclass[10.5pt,a4paper]{article}
+\usepackage[a4paper,top=17mm,bottom=18mm,left=18mm,right=18mm,headsep=6mm,footskip=10mm]{geometry}
+\usepackage{fontspec}
+\usepackage{kotex}
+\IfFontExistsTF{Noto Sans CJK KR}{\setmainfont{Noto Sans CJK KR}\setsansfont{Noto Sans CJK KR}}{}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{booktabs,tabularx,array,longtable,multirow}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{fancyhdr,lastpage}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc,positioning,patterns}
+\usepackage{microtype}
+\usepackage{setspace}
+
+\definecolor{navy}{HTML}{183153}
+\definecolor{blue}{HTML}{2563A6}
+\definecolor{sky}{HTML}{EAF3FB}
+\definecolor{green}{HTML}{176B52}
+\definecolor{mint}{HTML}{EAF7F2}
+\definecolor{orange}{HTML}{B45309}
+\definecolor{cream}{HTML}{FFF7E8}
+\definecolor{red}{HTML}{A33131}
+\definecolor{rose}{HTML}{FCEEEE}
+\definecolor{graytext}{HTML}{4B5563}
+\definecolor{lightgray}{HTML}{F4F6F8}
+
+\hypersetup{colorlinks=true,linkcolor=navy,urlcolor=blue,pdftitle={전반부 공식 PS1--PS4 전 문제 상세풀이},pdfauthor={OpenAI, source-grounded study edition}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4.5pt}
+\setstretch{1.08}
+\setlist[itemize]{leftmargin=5mm,itemsep=1.5pt,topsep=2pt}
+\setlist[enumerate]{leftmargin=7mm,itemsep=2pt,topsep=2pt}
+\renewcommand{\arraystretch}{1.18}
+\allowdisplaybreaks
+
+\DeclareMathOperator{\E}{E}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\SD}{SD}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\dd}{\,\mathrm{d}}
+\newcommand{\given}{\,|\,}
+\newcommand{\ps}{\mathrm{PS}}
+\newcommand{\rbar}{\bar r}
+\newcommand{\dbar}{\bar\delta}
+\newcommand{\tilden}[1]{\widetilde{#1}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{graytext} Money, Banking and Finance A · 공식 PS1--PS4}
+\fancyhead[R]{\small\color{graytext} 1--7강 상세풀이}
+\fancyfoot[C]{\small\color{graytext} \thepage\ / \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.3pt}
+
+\newtcolorbox{officialbox}[1][]{enhanced,breakable,colback=sky,colframe=blue,boxrule=0.7pt,arc=2mm,left=3mm,right=3mm,top=2mm,bottom=2mm,title={\bfseries 공식 문제},fonttitle=\normalsize,#1}
+\newtcolorbox{strategybox}[1][]{enhanced,breakable,colback=cream,colframe=orange,boxrule=0.7pt,arc=2mm,left=3mm,right=3mm,top=2mm,bottom=2mm,title={\bfseries 풀이 전략},fonttitle=\normalsize,#1}
+\newtcolorbox{solutionbox}[1][]{enhanced,breakable,colback=white,colframe=navy,boxrule=0.75pt,arc=2mm,left=3mm,right=3mm,top=2mm,bottom=2mm,title={\bfseries 상세 풀이},fonttitle=\normalsize,#1}
+\newtcolorbox{answerbox}[1][]{enhanced,breakable,colback=mint,colframe=green,boxrule=0.8pt,arc=2mm,left=3mm,right=3mm,top=2mm,bottom=2mm,title={\bfseries 최종 답},fonttitle=\normalsize,#1}
+\newtcolorbox{warningbox}[1][]{enhanced,breakable,colback=rose,colframe=red,boxrule=0.7pt,arc=2mm,left=3mm,right=3mm,top=2mm,bottom=2mm,title={\bfseries 감점 방지},fonttitle=\normalsize,#1}
+\newtcolorbox{sourcebox}[1][]{enhanced,breakable,colback=lightgray,colframe=graytext,boxrule=0.5pt,arc=1.5mm,left=3mm,right=3mm,top=2mm,bottom=2mm,#1}
+
+\newcommand{\chaptertitle}[2]{%
+  \clearpage
+  \phantomsection
+  \addcontentsline{toc}{section}{#1}
+  {\color{navy}\LARGE\bfseries #1}\par
+  \vspace{1mm}{\color{graytext}\large #2}\par
+  \vspace{2mm}\hrule\vspace{4mm}}
+
+\newcommand{\exercise}[2]{%
+  \clearpage
+  \phantomsection
+  \addcontentsline{toc}{subsection}{#1}
+  {\color{navy}\Large\bfseries #1}\hfill{\color{graytext}\small #2}\par
+  \vspace{1.5mm}\hrule\vspace{3mm}}
+
+\newcommand{\step}[1]{\par\medskip{\color{blue}\bfseries #1}\par}
+\newcommand{\finaleq}[1]{\[\boxed{\displaystyle #1}\]}
+\newcommand{\smallnote}[1]{{\small\color{graytext}#1}}
+
+\begin{document}
+
+\begin{titlepage}
+\thispagestyle{empty}
+\vspace*{22mm}
+{\color{navy}\Huge\bfseries 전반부 1--7강}\par
+\vspace{3mm}
+{\color{blue}\fontsize{28}{34}\selectfont\bfseries 공식 PS1--PS4\par 전 문제 상세풀이}\par
+\vspace{9mm}
+{\Large 교수님이 배포한 공식 Problem Set만 수록}\par
+\vspace{3mm}
+{\large 임의 제작·변형문제 0개 · 공식 Exercise 23개}\par
+\vfill
+\begin{tcolorbox}[colback=lightgray,colframe=navy,boxrule=0.8pt,arc=2mm,left=5mm,right=5mm,top=4mm,bottom=4mm]
+\textbf{구성 원칙}
+\begin{itemize}
+\item 문제의 수치·가정·소문항은 교수 배포본 PS1--PS4를 기준으로 보존했다.
+\item 공식 해설이 있는 문항은 그 해설의 논리와 기호를 따라 계산 단계를 풀어 썼다.
+\item 공식 해설에 ``Discussed in the exercise session''이라고만 적힌 PS3 Exercise 1, PS4 Exercise 1은 수업 녹취와 수업 필기를 근거로 재구성했다.
+\item 시험 답안처럼 \textbf{설정식 → FOC 또는 통계량 → 제약조건/시장청산 → 최종 답 → 경제적 직관} 순서로 정리했다.
+\end{itemize}
+\end{tcolorbox}
+\vfill
+{\small\color{graytext}Source-grounded Korean study edition · July 2026}\par
+\end{titlepage}
+
+\tableofcontents
+\clearpage
+
+\section*{자료 범위와 공식성 확인}
+\addcontentsline{toc}{section}{자료 범위와 공식성 확인}
+\begin{sourcebox}
+\begin{tabularx}{\textwidth}{@{}lXl@{}}
+\toprule
+구분 & 사용한 교수 배포 자료 & 공식 Exercise 수 \\
+\midrule
+PS1 & MBF\_PS1-2.pdf, MBF\_PS1\_Solution-2.pdf & 4 \\
+PS2 & MBF\_PS2\_2024-2.pdf, MBF\_PS2\_Solution\_2024-2.pdf & 5 \\
+PS3 & MBF\_PS3-2.pdf, MBF\_PS3\_Solution-2.pdf, PS3\_Ex3,4\_solution.pdf, exercise-session 녹취 & 7 \\
+PS4 & MBF\_PS4.pdf, MBF\_PS4\_Solution.pdf, exercise-session 녹취·필기 & 7 \\
+\midrule
+합계 & 교수 배포 공식 Problem Set & \textbf{23} \\
+\bottomrule
+\end{tabularx}
+\end{sourcebox}
+
+\begin{warningbox}
+이 책의 ``문제''는 모두 위 공식 PS의 Exercise다. 설명을 위해 문장을 한국어로 옮겼지만 숫자나 상황을 바꾼 변형문제는 넣지 않았다. 이전의 ``24제'' 자료는 이 공식 문제집과 무관하며 사용하지 않는 것이 맞다.
+\end{warningbox}
+
+\section*{시험장에서 공통으로 지킬 답안 순서}
+\addcontentsline{toc}{section}{시험장에서 공통으로 지킬 답안 순서}
+\begin{enumerate}
+\item \textbf{무엇을 선택하는지 먼저 정의}: 소비량, 투자액, 주식 수, 포트폴리오 가중치 중 무엇인지 단위를 적는다.
+\item \textbf{제약식 또는 최종부를 먼저 작성}: 예산제약, terminal wealth, 포트폴리오 수익률을 생략하지 않는다.
+\item \textbf{공식 전체를 쓴 뒤 특수값을 대입}: 특히 분산식의 공분산 항을 먼저 쓰고, 공분산이 0일 때만 지운다.
+\item \textbf{FOC와 제약조건을 함께 사용}: 개인 최적화만 풀고 시장청산을 빼먹지 않는다.
+\item \textbf{그림은 축·점·범위를 표시}: 공매도 금지이면 선이 자산점에서 정확히 멈춰야 한다.
+\item \textbf{마지막 한 문장 직관}: 위험 증가 → 위험프리미엄 증가 → 가격 하락처럼 방향을 연결한다.
+\end{enumerate}
+
+\input{ps1}
+\input{ps2}
+\input{ps3}
+\input{ps4}
+
+\clearpage
+\section*{최종 체크리스트}
+\addcontentsline{toc}{section}{최종 체크리스트}
+\begin{tcolorbox}[colback=mint,colframe=green,boxrule=0.8pt,arc=2mm]
+\begin{itemize}
+\item PS1: 개인별 수요함수와 시장청산으로 가격비율을 구할 수 있는가?
+\item PS1: 계약곡선과 경쟁균형을 ``효율성''과 ``공정성''으로 구분해 설명할 수 있는가?
+\item PS2: ARA/RRA 조건만 보고 CARA/CRRA 효용함수를 복원할 수 있는가?
+\item PS2: 확실성등가와 위험프리미엄을 기대효용 등식으로 계산할 수 있는가?
+\item PS3: 최종부를 쓴 뒤 기대값·분산을 구하고 FOC를 세울 수 있는가?
+\item PS3: 개인 수요를 합산해 시장청산으로 균형가격을 구할 수 있는가?
+\item PS4: 평균·표준편차·공분산·상관계수를 계산한 뒤 가중치를 제거할 수 있는가?
+\item PS4: $\rho=1,0,-1$ 각각의 frontier 모양과 공매도 제약을 설명할 수 있는가?
+\item PS4: 무위험자산이 있을 때 접점포트폴리오, 대출자·차입자, 2기금 분리를 설명할 수 있는가?
+\end{itemize}
+\end{tcolorbox}
+
+\end{document}
