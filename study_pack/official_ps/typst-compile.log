@@ -1,11 +1,9 @@
 === Detailed edition ===
-error: unknown variable: show-solutions
+error: unknown variable: show_solutions
   ┌─ study_pack/official_ps/content.typ:7:6
   │
-7 │   #if show-solutions [
+7 │   #if show_solutions [
   │       ^^^^^^^^^^^^^^
-  │
-  = hint: if you meant to use subtraction, try adding spaces around the minus sign: `show - solutions`
 
   while including `content.typ` at study_pack/official_ps/main.typ:6:1
     include "content.typ"
@@ -19,13 +17,11 @@ warning: unknown font family: noto sans
 Detailed status: 1
 
 === Problems-only edition ===
-error: unknown variable: show-solutions
+error: unknown variable: show_solutions
   ┌─ study_pack/official_ps/content.typ:7:6
   │
-7 │   #if show-solutions [
+7 │   #if show_solutions [
   │       ^^^^^^^^^^^^^^
-  │
-  = hint: if you meant to use subtraction, try adding spaces around the minus sign: `show - solutions`
 
   while including `content.typ` at study_pack/official_ps/problems_only.typ:6:1
     include "content.typ"
