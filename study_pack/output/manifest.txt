@@ -1,0 +1,4 @@
+file=finance_lectures_1_7_final_ps4_reference.pdf
+pages=18
+bytes=1171844
+status=validated
