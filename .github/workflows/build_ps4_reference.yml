@@ -63,6 +63,7 @@ jobs:
               r'\frac83': r'\frac{8}{3}',
               r'\frac12': r'\frac{1}{2}',
               r'\widetilde\delta': r'\widetilde{\delta}',
+              r'\underbrace{\sigma_{AB}}_{0}': r'\sigma_{AB}',
           }
           for old, new in replacements.items():
               s = s.replace(old, new)
