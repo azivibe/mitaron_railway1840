@@ -37,29 +37,36 @@ jobs:
       - name: Compile PDFs
         run: |
           mkdir -p study_pack/output
-          # Typst identifiers cannot use the hyphenated helper names used in the source draft.
-          # Normalize them only in the runner workspace before compilation.
+          # Normalize helper identifiers and make every included module self-contained.
           sed -i \
             -e 's/show-solutions/show_solutions/g' \
             -e 's/maybe-solution/maybe_solution/g' \
             -e 's/maybe-key/maybe_key/g' \
             -e 's/maybe-caution/maybe_caution/g' \
-            study_pack/official_ps/main.typ \
-            study_pack/official_ps/problems_only.typ \
             study_pack/official_ps/content.typ \
             study_pack/official_ps/ps1.typ \
             study_pack/official_ps/ps2.typ \
             study_pack/official_ps/ps3.typ \
             study_pack/official_ps/ps4.typ
+          cat >> study_pack/official_ps/style.typ <<'EOF'
+
+#let show_solutions = sys.inputs.at("solutions") == "true"
+#let maybe_solution(title, body) = if show_solutions { solution(title, body) } else { none }
+#let maybe_key(body) = if show_solutions { key(body) } else { none }
+#let maybe_caution(body) = if show_solutions { caution(body) } else { none }
+EOF
+          for f in content.typ ps1.typ ps2.typ ps3.typ ps4.typ; do
+            sed -i '1i #import "style.typ": *' "study_pack/official_ps/${f}"
+          done
           set +e
           {
             echo '=== Detailed edition ==='
-            typst compile study_pack/official_ps/main.typ study_pack/output/MBF_PS1-PS4_Official_Problems_Detailed_Solutions_KO.pdf
+            typst compile --input solutions=true study_pack/official_ps/content.typ study_pack/output/MBF_PS1-PS4_Official_Problems_Detailed_Solutions_KO.pdf
             STATUS_DETAILED=$?
             echo "Detailed status: ${STATUS_DETAILED}"
             echo
             echo '=== Problems-only edition ==='
-            typst compile study_pack/official_ps/problems_only.typ study_pack/output/MBF_PS1-PS4_Official_Problems_Only_KO.pdf
+            typst compile --input solutions=false study_pack/official_ps/content.typ study_pack/output/MBF_PS1-PS4_Official_Problems_Only_KO.pdf
             STATUS_PROBLEMS=$?
             echo "Problems-only status: ${STATUS_PROBLEMS}"
           } 2>&1 | tee study_pack/official_ps/typst-compile.log
