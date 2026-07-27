@@ -1,0 +1,680 @@
+\chaptertitle{PS3 · 포트폴리오 선택과 균형자산가격}{공식 Exercise 1--7 · 평균--분산, CARA--Normal, 이질적 믿음, 시장청산과 위험프리미엄}
+
+\begin{sourcebox}
+\textbf{이 장의 공식 출처}: MBF\_PS3-2.pdf, MBF\_PS3\_Solution-2.pdf, PS3\_Ex3,4\_solution.pdf 및 공식 exercise session 녹취. Exercise 1은 공식 해설 PDF가 ``수업에서 논의''라고만 적고 있으므로 수업시간 풀이를 수식으로 재구성했다.
+\end{sourcebox}
+
+\exercise{PS3 Exercise 1}{공식 문제 · 수업 풀이 재구성}
+\begin{officialbox}
+펀드매니저가 다음 세 자산을 이용한다.
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+자산 & 기대수익률 & 표준편차 & 비고 \\
+\midrule
+Adidas 주식 & $20\%$ & $4\%$ & 위험자산 \\
+Boeing 주식 & $10\%$ & $1.5\%$ & 위험자산 \\
+무위험채권 & $2\%$ & $0$ & 무위험자산 \\
+\bottomrule
+\end{tabular}
+\end{center}
+Adidas와 Boeing의 상관계수는 $0.2$다. 고객의 초기부는 100,000달러이고
+\[
+\E[U(W)]=\E[W]-0.0025\Var(W)
+\]
+를 최대화한다.
+\begin{enumerate}[label=(\alph*)]
+\item Adidas와 무위험채권만 이용할 때 최적 포트폴리오를 구하라.
+\item 세 자산을 모두 이용할 때 최적 포트폴리오를 구하라.
+\item 상관계수가 $0.2$에서 $-0.2$로 하락하면 포트폴리오를 어떻게 바꾸는가? 경제적 직관을 설명하라.
+\end{enumerate}
+\end{officialbox}
+
+\begin{strategybox}
+투자액을 각각 $a,b$라 하고 채권투자액을 $W_0-a-b$라 둔다. 먼저 최종부를 쓰고, 기대값과 분산을 구한 뒤 $a,b$로 미분한다. 수업에서 강조한 대로 처음부터 숫자를 난입하기보다 일반식을 먼저 세운다.
+\end{strategybox}
+
+\begin{solutionbox}
+\step{공통 설정}
+순수익률을 $\widetilde r_A,\widetilde r_B$, 무위험 순수익률을 $r_f$라 하자.
+\[
+\widetilde W_1=(1+\widetilde r_A)a+(1+\widetilde r_B)b+(1+r_f)(W_0-a-b).
+\]
+따라서
+\[
+\E[\widetilde W_1]=(1+r_f)W_0+(\bar r_A-r_f)a+(\bar r_B-r_f)b,
+\]
+\[
+\Var(\widetilde W_1)=a^2\sigma_A^2+b^2\sigma_B^2+2ab\sigma_{AB}.
+\]
+문제의 효용은 $\E[W]-(\theta/2)\Var(W)$ 형태이며 $\theta/2=0.0025$, 즉 $\theta=0.005$다.
+
+\step{(a) Adidas와 채권만}
+$b=0$으로 두면 목적함수에서 $a$와 관련된 부분은
+\[
+(0.20-0.02)a-0.0025(0.04^2)a^2.
+\]
+FOC는
+\[
+0.18-2(0.0025)(0.04^2)a=0.
+\]
+따라서
+\[
+a^*=\frac{0.18}{0.005\times0.04^2}=22{,}500.
+\]
+채권에는
+\[
+100{,}000-22{,}500=77{,}500
+\]
+달러를 투자한다.
+
+\step{(b) 세 자산 모두}
+공분산은
+\[
+\sigma_{AB}=\rho_{AB}\sigma_A\sigma_B
+=0.2(0.04)(0.015)=0.00012.
+\]
+FOC는
+\[
+0.18=0.005\bigl(0.0016a+0.00012b\bigr),
+\]
+\[
+0.08=0.005\bigl(0.00012a+0.000225b\bigr).
+\]
+즉
+\[
+\begin{pmatrix}
+0.0016&0.00012\\
+0.00012&0.000225
+\end{pmatrix}
+\begin{pmatrix}a\\b\end{pmatrix}
+=
+\begin{pmatrix}36\\16\end{pmatrix}.
+\]
+행렬식은
+\[
+D=0.0016(0.000225)-(0.00012)^2=3.456\times10^{-7}.
+\]
+Cramer 법칙 또는 연립방정식으로
+\[
+a^*=\frac{36(0.000225)-16(0.00012)}{D}
+\approx17{,}881.94,
+\]
+\[
+b^*=\frac{16(0.0016)-36(0.00012)}{D}
+\approx61{,}574.07.
+\]
+따라서 채권투자액은
+\[
+100{,}000-a^*-b^*\approx20{,}543.98.
+\]
+
+\step{(c) 상관계수 $-0.2$}
+새 공분산은 $-0.00012$다. FOC의 공분산 항 부호만 바뀐다.
+\[
+\begin{pmatrix}
+0.0016&-0.00012\\
+-0.00012&0.000225
+\end{pmatrix}
+\begin{pmatrix}a\\b\end{pmatrix}
+=
+\begin{pmatrix}36\\16\end{pmatrix}.
+\]
+행렬식은 공분산의 제곱이 들어가므로 그대로다. 해는
+\[
+a^*\approx28{,}993.06,
+\qquad b^*\approx86{,}574.07.
+\]
+두 위험자산 투자액의 합이 100,000달러보다 크므로 채권보유는
+\[
+100{,}000-a^*-b^*\approx-15{,}567.13.
+\]
+음의 채권보유는 무위험이자율로 차입하여 위험자산을 추가 매수한다는 뜻이다.
+
+상관계수가 음수가 되면 한 자산이 나쁠 때 다른 자산이 좋을 가능성이 커진다. 두 자산을 함께 더 많이 보유해도 포트폴리오 전체 위험을 상쇄할 수 있으므로 위험자산 수요가 모두 증가하고 레버리지까지 사용한다.
+\end{solutionbox}
+
+\begin{answerbox}
+\begin{center}
+\begin{tabular}{lrrr}
+\toprule
+경우 & Adidas & Boeing & 무위험채권 \\
+\midrule
+(a) Adidas+채권 & $22{,}500.00$ & $0$ & $77{,}500.00$ \\
+(b) $\rho=0.2$ & $17{,}881.94$ & $61{,}574.07$ & $20{,}543.98$ \\
+(c) $\rho=-0.2$ & $28{,}993.06$ & $86{,}574.07$ & $-15{,}567.13$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{answerbox}
+
+\begin{warningbox}
+분산을 $a^2\sigma_A^2+b^2\sigma_B^2$에서 끝내면 큰 감점이다. 반드시 $2ab\sigma_{AB}$를 먼저 쓰고, 상관계수에서 공분산을 계산해야 한다. 투자액과 포트폴리오 비중을 혼용하지도 말 것.
+\end{warningbox}
+
+\exercise{PS3 Exercise 2}{공식 문제}
+\begin{officialbox}
+$t=0,1$의 두 시점, 무위험수익률 $r_f$, 현금흐름 $\widetilde\delta\sim N(\bar\delta,\sigma_\delta^2)$를 지급하는 위험자산이 있다. 현재가격은 $P$, 총공급은 $S$, 동일한 투자자는 $N$명이다. 각 투자자는 초기부 $Y_0$와 CARA 효용
+\[
+U(Y)=-e^{-\nu Y},\qquad \nu>0
+\]
+을 갖는다.
+\begin{enumerate}[label=(\alph*)]
+\item 투자자가 위험자산 $X$주를 매수할 때 최적화문제를 세워라.
+\item 수요함수 $X(P)$를 구하라.
+\item 시장청산으로 균형가격 $P$를 구하라.
+\item $\sigma_\delta^2$가 증가할 때 가격방향과 직관을 설명하라.
+\end{enumerate}
+\end{officialbox}
+
+\begin{strategybox}
+CARA--Normal에서는 정규분포의 적률생성함수
+\[
+Z\sim N(\mu,s^2)\quad\Longrightarrow\quad \E[e^Z]=e^{\mu+s^2/2}
+\]
+를 이용하면 기대효용 최대화가 확실성등가 최대화로 바뀐다.
+\end{strategybox}
+
+\begin{solutionbox}
+\step{(a) 최종부}
+$X$주를 사는 데 $PX$가 들고 나머지를 무위험자산에 둔다.
+\[
+\widetilde Y_1=\widetilde\delta X+(1+r_f)(Y_0-PX).
+\]
+따라서 문제는
+\[
+\max_X\;\E\left[-e^{-\nu\widetilde Y_1}\right].
+\]
+
+\step{(b) 확실성등가와 수요}
+$-\nu\widetilde Y_1$은 정규분포이며
+\[
+\E[-\nu\widetilde Y_1]
+=-\nu\left[\bar\delta X+(1+r_f)(Y_0-PX)\right],
+\]
+\[
+\Var(-\nu\widetilde Y_1)=\nu^2X^2\sigma_\delta^2.
+\]
+적률생성함수를 적용하면 기대효용 최대화는 다음 확실성등가 최대화와 동치다.
+\[
+\max_X\left\{\bar\delta X+(1+r_f)(Y_0-PX)-\frac\nu2X^2\sigma_\delta^2\right\}.
+\]
+FOC는
+\[
+\bar\delta-(1+r_f)P-\nu\sigma_\delta^2X=0.
+\]
+따라서
+\[
+\boxed{X(P)=\frac{\bar\delta-(1+r_f)P}{\nu\sigma_\delta^2}}.
+\]
+
+\step{(c) 시장청산}
+총수요 $NX(P)$가 공급 $S$와 같아야 한다.
+\[
+N\frac{\bar\delta-(1+r_f)P}{\nu\sigma_\delta^2}=S.
+\]
+따라서
+\[
+\boxed{P=\frac{\bar\delta-\nu\sigma_\delta^2(S/N)}{1+r_f}}.
+\]
+이는
+\[
+P=\frac{\text{기대현금흐름}-\text{위험프리미엄}}{1+r_f}
+\]
+의 형태다.
+
+\step{(d) 위험 증가}
+\[
+\frac{\partial P}{\partial\sigma_\delta^2}
+=-\frac{\nu S/N}{1+r_f}<0.
+\]
+현금흐름 변동성이 커지면 위험회피 투자자가 같은 공급량을 보유하기 위해 더 큰 위험프리미엄을 요구한다. 요구수익률이 올라가려면 현재가격은 내려가야 한다.
+\end{solutionbox}
+
+\begin{answerbox}
+\[
+X(P)=\frac{\bar\delta-(1+r_f)P}{\nu\sigma_\delta^2},
+\qquad
+P=\frac{\bar\delta-\nu\sigma_\delta^2S/N}{1+r_f},
+\qquad
+\sigma_\delta^2\uparrow\Rightarrow P\downarrow.
+\]
+\end{answerbox}
+
+\begin{warningbox}
+현금흐름 $\widetilde\delta$는 \textbf{가격을 포함한 수익률}이 아니라 $t=1$의 지급액이다. 따라서 최종부에는 $\widetilde\delta X$와 $-PX$가 서로 다른 시점으로 들어간다.
+\end{warningbox}
+
+\exercise{PS3 Exercise 3}{공식 문제 · 공식 exercise-session 해설}
+\begin{officialbox}
+Exercise 2를 수정한다. 투자자의 비율 $\alpha$는 낙관형 H로 $\widetilde\delta\sim N(\bar\delta_H,\sigma^2)$를 믿고, 나머지 $1-\alpha$는 비관형 L로 $\widetilde\delta\sim N(\bar\delta_L,\sigma^2)$를 믿는다. $\bar\delta_L<\bar\delta_H$이고 각 투자자는 시장이 열리기 전 $S/N$주씩 보유한다.
+\begin{enumerate}[label=(\alph*)]
+\item 경쟁균형 $X_H,X_L,P$를 구하라.
+\item 거래량을 구하고, 누가 얼마를 거래하는지와 거래량이 언제 큰지 설명하라.
+\end{enumerate}
+\end{officialbox}
+
+\begin{strategybox}
+유형별 수요함수는 Exercise 2의 평균만 바꾸면 된다. 시장청산에는 유형별 인원수 $\alpha N$과 $(1-\alpha)N$를 곱한다.
+\end{strategybox}
+
+\begin{solutionbox}
+\step{(a) 유형별 수요와 가격}
+\[
+X_H(P)=\frac{\bar\delta_H-(1+r_f)P}{\nu\sigma^2},
+\qquad
+X_L(P)=\frac{\bar\delta_L-(1+r_f)P}{\nu\sigma^2}.
+\]
+시장청산은
+\[
+\alpha NX_H(P)+(1-\alpha)NX_L(P)=S.
+\]
+대입하여
+\[
+\boxed{P=
+\frac{\alpha\bar\delta_H+(1-\alpha)\bar\delta_L-\nu\sigma^2S/N}{1+r_f}}.
+\]
+가격은 시장 전체의 평균적 기대현금흐름에서 위험프리미엄을 뺀 뒤 할인한 값이다.
+
+가격을 각 수요함수에 다시 넣으면
+\[
+\boxed{X_H=\frac SN+\frac{(1-\alpha)(\bar\delta_H-\bar\delta_L)}{\nu\sigma^2}},
+\]
+\[
+\boxed{X_L=\frac SN-\frac{\alpha(\bar\delta_H-\bar\delta_L)}{\nu\sigma^2}}.
+\]
+낙관형은 초기보유량보다 더 사고 비관형은 판다.
+
+\step{(b) 거래량}
+낙관형 한 명의 순매수는
+\[
+X_H-\frac SN=\frac{(1-\alpha)(\bar\delta_H-\bar\delta_L)}{\nu\sigma^2}.
+\]
+낙관형 전체의 매수량은
+\[
+\alpha N\left(X_H-\frac SN\right)
+=\frac{N\alpha(1-\alpha)(\bar\delta_H-\bar\delta_L)}{\nu\sigma^2}.
+\]
+비관형 전체의 순매도 절대값도 정확히 같다. 따라서 시장 거래량은
+\[
+\boxed{V=\frac{N\alpha(1-\alpha)(\bar\delta_H-\bar\delta_L)}{\nu\sigma^2}}.
+\]
+$\alpha(1-\alpha)$는 역 U자이며 $\alpha=1/2$에서 최대다. 또한 의견차 $\bar\delta_H-\bar\delta_L$가 클수록, 위험회피 $\nu$가 작을수록, 믿음의 분산 $\sigma^2$가 작아 각자 더 확신할수록 거래량이 커진다.
+\end{solutionbox}
+
+\begin{answerbox}
+\[
+P=\frac{\alpha\bar\delta_H+(1-\alpha)\bar\delta_L-\nu\sigma^2S/N}{1+r_f},
+\]
+\[
+X_H=\frac SN+\frac{(1-\alpha)\Delta\bar\delta}{\nu\sigma^2},
+\qquad
+X_L=\frac SN-\frac{\alpha\Delta\bar\delta}{\nu\sigma^2},
+\]
+\[
+V=\frac{N\alpha(1-\alpha)\Delta\bar\delta}{\nu\sigma^2},\qquad
+\Delta\bar\delta=\bar\delta_H-\bar\delta_L>0.
+\]
+\end{answerbox}
+
+\begin{warningbox}
+거래량은 최종보유량 $X_i$ 자체가 아니라 \textbf{초기보유량 $S/N$에서 얼마나 변했는지}로 계산한다. 시장 전체에서 매수량과 매도량을 다시 합쳐 두 배로 세지 않는다.
+\end{warningbox}
+
+\exercise{PS3 Exercise 4}{공식 문제 · 공식 exercise-session 해설}
+\begin{officialbox}
+Exercise 2의 $N$명 가격수용자 외에 가격영향을 이해하는 대형투자자가 한 명 있다. 대형투자자는 위험중립이며 현금흐름 기대값을 $\bar\delta_B\ne\bar\delta$로 믿는다. 대형투자자의 매수량을 $Z$라 한다.
+\begin{enumerate}[label=(\alph*)]
+\item 경쟁균형 $X,Z,P$를 구하라.
+\item 공식 문항이 요구하는 $\partial Z/\partial\sigma<0$의 이유를 설명하라. 위험중립자가 왜 위험이 커질 때 매수를 줄이는가?
+\end{enumerate}
+\end{officialbox}
+
+\begin{strategybox}
+대형투자자가 $Z$주를 사면 가격수용자에게 남는 공급은 $S-Z$다. 먼저 가격수용자의 시장청산에서 $P(Z)$를 구한 뒤, 대형투자자가 그 가격함수를 내생적으로 고려해 $Z$를 선택한다.
+\end{strategybox}
+
+\begin{solutionbox}
+\step{가격수용자 측 시장청산}
+각 소형투자자의 수요는
+\[
+X(P)=\frac{\bar\delta-(1+r)P}{\nu\sigma^2}.
+\]
+대형투자자가 $Z$를 보유하면
+\[
+NX(P)+Z=S.
+\]
+따라서
+\[
+\boxed{P(Z)=\frac{\bar\delta-(\nu\sigma^2/N)(S-Z)}{1+r}}.
+\]
+$Z$가 증가하면 소형투자자에게 남는 공급이 줄고 가격은 상승한다.
+
+\step{대형투자자의 최적화}
+대형투자자는 위험중립이므로 기대최종부를 최대화한다.
+\[
+\max_Z\;\bar\delta_B Z+(1+r)\bigl[Y_0-P(Z)Z\bigr].
+\]
+$P(Z)$를 대입하고 상수항을 제외하면
+\[
+\max_Z\left\{
+\left(\bar\delta_B-\bar\delta+\frac{\nu\sigma^2S}{N}\right)Z
+-\frac{\nu\sigma^2}{N}Z^2
+\right\}.
+\]
+FOC에서
+\[
+\boxed{Z^*=\frac S2+\frac{N(\bar\delta_B-\bar\delta)}{2\nu\sigma^2}}.
+\]
+이를 $P(Z)$에 넣으면
+\[
+\boxed{P^*=\frac1{1+r}\left[
+\frac{\bar\delta+\bar\delta_B}{2}-\frac{S\nu\sigma^2}{2N}
+\right]}.
+\]
+소형투자자의 보유량은 시장청산 또는 수요함수로
+\[
+\boxed{X^*=\frac{S}{2N}-\frac{\bar\delta_B-\bar\delta}{2\nu\sigma^2}}.
+\]
+
+\step{(b) 위험과 가격영향}
+공식 해설이 설명하는 낙관적 대형투자자 $\bar\delta_B>\bar\delta$의 경우
+\[
+\frac{\partial Z^*}{\partial\sigma}
+=-\frac{N(\bar\delta_B-\bar\delta)}{\nu\sigma^3}<0.
+\]
+대형투자자가 직접 위험을 싫어해서가 아니다. $\sigma$가 커지면 위험회피 소형투자자의 수요곡선이 더 가팔라져, 대형투자자가 $Z$를 늘려 잔여공급을 줄일 때 가격이 더 크게 상승한다. 자신이 매수하면서 스스로 지불가격을 끌어올리는 \textbf{price impact}가 커지기 때문에 최적매수량을 줄인다.
+
+\smallnote{원문은 $\bar\delta_B\ne\bar\delta$라고 쓰면서 $\partial Z/\partial\sigma<0$을 요구한다. 위 부호는 공식 해설이 의도한 $\bar\delta_B>\bar\delta$에서 성립하며, 반대의 믿음이면 비교정태의 부호도 반대가 된다.}
+\end{solutionbox}
+
+\begin{answerbox}
+\[
+Z^*=\frac S2+\frac{N(\bar\delta_B-\bar\delta)}{2\nu\sigma^2},
+\quad
+X^*=\frac{S}{2N}-\frac{\bar\delta_B-\bar\delta}{2\nu\sigma^2},
+\]
+\[
+P^*=\frac1{1+r}\left[rac{\bar\delta+\bar\delta_B}{2}-\frac{S\nu\sigma^2}{2N}\right].
+\]
+낙관적 대형투자자의 경우 $\sigma\uparrow$는 price impact를 키워 $Z^*\downarrow$를 만든다.
+\end{answerbox}
+
+\begin{warningbox}
+대형투자자를 가격수용자로 처리해 $P$를 상수로 미분하면 이 문제의 핵심이 사라진다. 반드시 $P=P(Z)$를 목적함수 안에 넣어야 한다.
+\end{warningbox}
+
+\exercise{PS3 Exercise 5}{공식 문제}
+\begin{officialbox}
+위험자산은 $t=1$에 $A>0$을 확률 $\pi$로, 0을 확률 $1-\pi$로 지급한다. 현재가격 $P$, 공급 $S$, 투자자 수 $N$, 무위험 순수익률은 $r$다. 각 투자자의 기대효용은
+\[
+\E[U(\widetilde Y_1)]=\E[\widetilde Y_1]-\frac\theta2\Var(\widetilde Y_1),\qquad\theta>0.
+\]
+\begin{enumerate}[label=(\alph*)]
+\item 수요함수와 균형가격을 구하라.
+\item $\theta$가 증가할 때 가격변화를 설명하라.
+\item $A$가 증가할 때 가격변화를 설명하라.
+\end{enumerate}
+\end{officialbox}
+
+\begin{strategybox}
+먼저 현금흐름의 평균과 분산을 계산한다. $A$는 평균도 올리지만 분산도 제곱으로 올리므로 가격효과가 단조롭지 않을 수 있다.
+\end{strategybox}
+
+\begin{solutionbox}
+\step{현금흐름 통계량}
+\[
+\E[\widetilde\delta]=\pi A,
+\qquad
+\Var(\widetilde\delta)=\pi(1-\pi)A^2.
+\]
+최종부는
+\[
+\widetilde Y_1=\widetilde\delta X+(1+r)(Y_0-PX).
+\]
+따라서 선택변수와 관련된 목적함수는
+\[
+\pi AX-(1+r)PX-\frac\theta2\pi(1-\pi)A^2X^2.
+\]
+FOC에서
+\[
+\boxed{X(P)=\frac{\pi A-(1+r)P}{\theta\pi(1-\pi)A^2}}.
+\]
+
+\step{(a) 균형가격}
+$NX(P)=S$를 적용하면
+\[
+\boxed{P=rac{\pi A}{1+r}
+-\frac{S\theta\pi(1-\pi)A^2}{(1+r)N}}.
+\]
+첫 항은 기대지급액의 할인현재가치, 둘째 항은 위험프리미엄이다.
+
+\step{(b) 위험회피도}
+\[
+\frac{\partial P}{\partial\theta}
+=-\frac{S\pi(1-\pi)A^2}{(1+r)N}<0.
+\]
+위험회피가 강해질수록 같은 공급을 보유시키려면 더 큰 위험프리미엄과 더 낮은 가격이 필요하다.
+
+\step{(c) 상방지급액 $A$}
+\[
+\frac{\partial P}{\partial A}
+=\frac{\pi}{1+r}\left[1-\frac{2S\theta(1-\pi)A}{N}\right].
+\]
+따라서
+\[
+\frac{\partial P}{\partial A}>0
+\quad\Longleftrightarrow\quad
+A<\frac{N}{2\theta S(1-\pi)}.
+\]
+작은 $A$에서는 기대현금흐름 증가효과가 우세하여 가격이 상승한다. 큰 $A$에서는 분산과 위험프리미엄이 $A^2$로 커지는 효과가 우세하여 가격이 하락한다. 가격은 $A$에 대해 역 U자다.
+\end{solutionbox}
+
+\begin{answerbox}
+\[
+X(P)=\frac{\pi A-(1+r)P}{\theta\pi(1-\pi)A^2},
+\qquad
+P=\frac{\pi A}{1+r}-\frac{S\theta\pi(1-\pi)A^2}{(1+r)N}.
+\]
+$\theta\uparrow\Rightarrow P\downarrow$. $A$에 대해서는 임계값 $N/[2\theta S(1-\pi)]$ 전까지 상승하고 이후 하락한다.
+\end{answerbox}
+
+\begin{warningbox}
+$A$가 커지면 기대값만 커진다고 결론 내리면 안 된다. 이 분포에서는 분산도 $A^2$로 증가하므로 두 효과를 모두 미분해야 한다.
+\end{warningbox}
+
+\exercise{PS3 Exercise 6}{공식 문제}
+\begin{officialbox}
+위험자산 현금흐름은
+\[
+\widetilde\delta=
+\begin{cases}
+\delta_H,&1/2,\\
+\delta_L,&1/2,
+\end{cases}
+\qquad \delta_H>\delta_L.
+\]
+가격 $P$, 공급 $S$, 투자자 수 $N$, 무위험 순수익률 $r>0$, CARA 계수 $\nu>0$이다.
+\begin{enumerate}[label=(\alph*)]
+\item 투자자 문제를 세워라.
+\item 수요함수 $X(P)$를 구하라.
+\item 균형가격을 구하라.
+\item $N\to\infty$일 때 가격과 직관을 설명하라.
+\end{enumerate}
+\end{officialbox}
+
+\begin{strategybox}
+이번 현금흐름은 정규분포가 아니므로 CARA--Normal의 확실성등가 공식을 바로 쓰면 안 된다. 두 상태 기대효용을 직접 미분하고 지수항의 비율을 로그로 푼다.
+\end{strategybox}
+
+\begin{solutionbox}
+\step{(a) 문제}
+\[
+\widetilde Y_1=\widetilde\delta X+(1+r)(Y_0-PX),
+\qquad
+\max_X\E[-e^{-\nu\widetilde Y_1}].
+\]
+
+\step{(b) FOC와 수요함수}
+두 상태를 직접 쓰면 FOC는
+\begin{align*}
+0={}&\frac12[\delta_H-(1+r)P]
+ e^{-\nu[\delta_HX+(1+r)(Y_0-PX)]}\\
+&+\frac12[\delta_L-(1+r)P]
+ e^{-\nu[\delta_LX+(1+r)(Y_0-PX)]}.
+\end{align*}
+공통항을 정리하면
+\[
+\delta_H-(1+r)P
+=\bigl[(1+r)P-\delta_L\bigr]e^{\nu(\delta_H-\delta_L)X}.
+\]
+따라서
+\[
+\boxed{X(P)=\frac1{\nu(\delta_H-\delta_L)}
+\ln\left[\frac{\delta_H-(1+r)P}{(1+r)P-\delta_L}\right]}.
+\]
+내부해에는 $\delta_L<(1+r)P<\delta_H$가 필요하다.
+
+\step{(c) 시장청산}
+$NX(P)=S$에서
+\[
+\frac{\delta_H-(1+r)P}{(1+r)P-\delta_L}
+=\exp\left[\frac{S\nu(\delta_H-\delta_L)}{N}\right].
+\]
+$K=\exp[S\nu(\delta_H-\delta_L)/N]$라 두면
+\[
+\delta_H-(1+r)P=K[(1+r)P-\delta_L].
+\]
+따라서
+\[
+\boxed{P=\frac1{1+r}\frac{\delta_H+K\delta_L}{1+K}},
+\qquad
+K=e^{S\nu(\delta_H-\delta_L)/N}.
+\]
+
+\step{(d) 투자자 수의 극한}
+$N\to\infty$이면 $K\to1$이다.
+\[
+\lim_{N\to\infty}P
+=\frac1{1+r}\frac{\delta_H+\delta_L}{2}
+=\frac{\E[\widetilde\delta]}{1+r}.
+\]
+총공급 $S$가 고정된 상태에서 투자자 수가 늘면 한 사람의 균형보유량 $S/N$이 0으로 간다. 각자가 부담하는 위험이 사라지므로 요구 위험프리미엄도 0으로 수렴한다.
+\end{solutionbox}
+
+\begin{answerbox}
+\[
+X(P)=\frac1{\nu(\delta_H-\delta_L)}
+\ln\frac{\delta_H-(1+r)P}{(1+r)P-\delta_L},
+\]
+\[
+P=\frac1{1+r}
+\frac{\delta_H+\delta_L e^{S\nu(\delta_H-\delta_L)/N}}
+{1+e^{S\nu(\delta_H-\delta_L)/N}},
+\]
+\[
+N\to\infty\quad\Longrightarrow\quad
+P\to\frac{\delta_H+\delta_L}{2(1+r)}.
+\]
+\end{answerbox}
+
+\begin{warningbox}
+두 점 분포를 정규분포로 취급해 평균--분산 확실성등가를 쓰면 공식 문항의 해와 달라진다. 여기서는 기대효용을 상태별로 직접 미분한다.
+\end{warningbox}
+
+\exercise{PS3 Exercise 7}{공식 문제}
+\begin{officialbox}
+현금흐름은
+\[
+\widetilde\delta=
+\begin{cases}
+\bar\delta+\alpha,&1/2,\\
+\bar\delta-\alpha,&1/2,
+\end{cases}
+\qquad \bar\delta>\alpha>0.
+\]
+로그효용 $U(Y_1)=\ln Y_1$을 가지며, 단순화를 위해 $r=0$, $S=1$, $N=1$, $Y_0=1$이다.
+\begin{enumerate}[label=(\alph*)]
+\item 투자자 문제를 세워라.
+\item 수요함수 $X(P)$를 구하라.
+\item $P\le\bar\delta$인 경우에 초점을 맞춰 균형가격을 구하라.
+\item $\alpha$가 증가할 때 가격과 직관을 설명하라.
+\end{enumerate}
+\end{officialbox}
+
+\begin{strategybox}
+두 상태의 최종부를 각각 쓰고 로그 기대효용을 직접 미분한다. 시장청산은 한 명의 투자자가 한 주를 보유하므로 $X(P)=1$이다.
+\end{strategybox}
+
+\begin{solutionbox}
+\step{(a) 최종부와 목적함수}
+$r=0$, $Y_0=1$이므로
+\[
+\widetilde Y_1=\widetilde\delta X+(1-PX).
+\]
+따라서
+\begin{align*}
+\max_X\;&\frac12\ln\bigl[(\bar\delta+\alpha)X+1-PX\bigr]\\
+&+\frac12\ln\bigl[(\bar\delta-\alpha)X+1-PX\bigr].
+\end{align*}
+
+\step{(b) 수요함수}
+FOC는
+\[
+\frac12\frac{\bar\delta+\alpha-P}{1+(\bar\delta+\alpha-P)X}
++\frac12\frac{\bar\delta-\alpha-P}{1+(\bar\delta-\alpha-P)X}=0.
+\]
+정리하면
+\[
+\boxed{X(P)=
+\frac{\bar\delta-P}
+{[(\bar\delta+\alpha)-P][P-(\bar\delta-\alpha)]}}.
+\]
+
+\step{(c) 시장청산}
+$X(P)=1$을 적용하면
+\[
+\bar\delta-P=[(\bar\delta+\alpha)-P][P-(\bar\delta-\alpha)].
+\]
+전개하면
+\[
+P^2-(1+2\bar\delta)P+\bar\delta+\bar\delta^2-\alpha^2=0.
+\]
+근의 공식으로
+\[
+P=\bar\delta+\frac12\left(1\pm\sqrt{1+4\alpha^2}\right).
+\]
+힌트대로 $P\le\bar\delta$를 만족하는 작은 근을 선택한다.
+\[
+\boxed{P=\bar\delta+rac12\left(1-\sqrt{1+4\alpha^2}\right)}.
+\]
+이를
+\[
+P=\bar\delta-rac12\left(\sqrt{1+4\alpha^2}-1\right)
+\]
+로 쓰면 기대지급액에서 위험프리미엄을 뺀 구조가 분명해진다.
+
+\step{(d) 변동폭}
+\[
+\frac{\partial P}{\partial\alpha}
+=-\frac{2\alpha}{\sqrt{1+4\alpha^2}}<0.
+\]
+$\alpha$는 현금흐름의 표준편차다. 변동폭이 커질수록 로그효용 위험회피자가 요구하는 위험프리미엄이 커져 현재가격이 하락한다.
+\end{solutionbox}
+
+\begin{answerbox}
+\[
+X(P)=
+\frac{\bar\delta-P}
+{[(\bar\delta+\alpha)-P][P-(\bar\delta-\alpha)]},
+\]
+\[
+P=\bar\delta+\frac12\left(1-\sqrt{1+4\alpha^2}\right),
+\qquad
+\alpha\uparrow\Rightarrow P\downarrow.
+\]
+\end{answerbox}
+
+\begin{warningbox}
+2차방정식의 두 근을 모두 균형이라고 쓰면 안 된다. 공식 힌트의 $P\le\bar\delta$와 최종부의 양의 조건을 이용해 작은 근을 선택해야 한다.
+\end{warningbox}
