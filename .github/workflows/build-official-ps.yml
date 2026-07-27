@@ -1,0 +1,62 @@
+name: Build official MBF problem guide
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'study_pack/official_ps/**'
+      - '.github/workflows/build-official-ps.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+          fetch-depth: 0
+
+      - name: Install Korean fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-noto-cjk zip
+
+      - name: Install Typst
+        uses: typst-community/setup-typst@v4
+
+      - name: Compile PDFs
+        run: |
+          mkdir -p study_pack/output
+          typst compile study_pack/official_ps/main.typ study_pack/output/MBF_PS1-PS4_Official_Problems_Detailed_Solutions_KO.pdf
+          typst compile study_pack/official_ps/problems_only.typ study_pack/output/MBF_PS1-PS4_Official_Problems_Only_KO.pdf
+          cd study_pack/output
+          zip -j MBF_PS1-PS4_Official_Set_KO.zip \
+            MBF_PS1-PS4_Official_Problems_Detailed_Solutions_KO.pdf \
+            MBF_PS1-PS4_Official_Problems_Only_KO.pdf
+
+      - name: Commit generated files
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add study_pack/output/MBF_PS1-PS4_Official_Problems_Detailed_Solutions_KO.pdf
+          git add study_pack/output/MBF_PS1-PS4_Official_Problems_Only_KO.pdf
+          git add study_pack/output/MBF_PS1-PS4_Official_Set_KO.zip
+          if ! git diff --cached --quiet; then
+            git commit -m 'Build official MBF PS1-PS4 study PDFs'
+            git push origin HEAD:${{ github.head_ref || github.ref_name }}
+          fi
+
+      - name: Upload PDF bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: MBF_PS1-PS4_Official_Set_KO
+          path: |
+            study_pack/output/MBF_PS1-PS4_Official_Problems_Detailed_Solutions_KO.pdf
+            study_pack/output/MBF_PS1-PS4_Official_Problems_Only_KO.pdf
+            study_pack/output/MBF_PS1-PS4_Official_Set_KO.zip
