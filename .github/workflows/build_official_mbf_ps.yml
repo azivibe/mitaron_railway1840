@@ -1,0 +1,54 @@
+name: Build official MBF PS1-PS4 PDF
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - official-mbf-ps1-ps4-guide
+    paths:
+      - 'study_pack/official_ps/**'
+      - '.github/workflows/build_official_mbf_ps.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  build-pdf:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install XeLaTeX and Korean fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            latexmk texlive-xetex texlive-lang-korean texlive-latex-extra \
+            texlive-fonts-recommended texlive-pictures fonts-noto-cjk
+
+      - name: Compile PDF
+        working-directory: study_pack/official_ps
+        run: |
+          latexmk -xelatex -interaction=nonstopmode -halt-on-error official_ps1_ps4_detailed.tex
+
+      - name: Copy final PDF
+        run: |
+          mkdir -p study_pack/output
+          cp study_pack/official_ps/official_ps1_ps4_detailed.pdf \
+             study_pack/output/MBF_PS1_PS4_Official_Detailed_Solutions_KO.pdf
+
+      - name: Upload workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: MBF-PS1-PS4-official-detailed-solutions
+          path: study_pack/output/MBF_PS1_PS4_Official_Detailed_Solutions_KO.pdf
+
+      - name: Commit compiled PDF
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add study_pack/output/MBF_PS1_PS4_Official_Detailed_Solutions_KO.pdf
+          if ! git diff --cached --quiet; then
+            git commit -m 'Build official MBF PS1-PS4 detailed solutions PDF'
+            git push
+          fi
