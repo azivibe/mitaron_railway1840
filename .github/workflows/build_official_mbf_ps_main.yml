@@ -21,6 +21,20 @@ jobs:
           ref: official-mbf-ps1-ps4-guide
           fetch-depth: 0
 
+      - name: Sanitize TeX files
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          for path in Path('study_pack/official_ps').glob('*.tex'):
+              text = path.read_text(encoding='utf-8')
+              # A single JSON escape in an earlier write converted one \f in \frac
+              # to ASCII form-feed. Restore any such occurrence before compilation.
+              text = text.replace('\x0crac', '\\frac')
+              path.write_text(text, encoding='utf-8')
+              if '\x0c' in text:
+                  raise SystemExit(f'unresolved form-feed in {path}')
+          PY
+
       - name: Install XeLaTeX and Korean fonts
         run: |
           sudo apt-get update
