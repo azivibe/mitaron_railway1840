@@ -4,9 +4,13 @@ on:
   pull_request:
     branches: [main]
     paths:
-      - 'study_pack/official_ps/**'
+      - 'study_pack/official_ps/**/*.typ'
       - '.github/workflows/build-official-ps.yml'
   workflow_dispatch:
+
+concurrency:
+  group: official-mbf-ps-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: write
