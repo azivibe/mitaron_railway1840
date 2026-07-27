@@ -37,6 +37,24 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install reportlab matplotlib pillow pypdf
 
+      - name: Normalize mathtext commands
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('study_pack/build_ps4_reference.py')
+          s = p.read_text(encoding='utf-8')
+          replacements = {
+              r'\text{preferences and constraints}': r'\mathrm{preferences\;and\;constraints}',
+              r'\text{choice/demand}': r'\mathrm{choice/demand}',
+              r'\text{market clearing or frontier}': r'\mathrm{market\;clearing\;or\;frontier}',
+              r'\text{price/welfare}': r'\mathrm{price/welfare}',
+              r'\quad\text{at}\quad': r'\quad\mathrm{at}\quad',
+          }
+          for old, new in replacements.items():
+              s = s.replace(old, new)
+          p.write_text(s, encoding='utf-8')
+          PY
+
       - name: Build and validate PDF
         run: python study_pack/build_ps4_reference.py
 
