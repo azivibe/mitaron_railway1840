@@ -48,13 +48,13 @@ jobs:
             study_pack/official_ps/ps2.typ \
             study_pack/official_ps/ps3.typ \
             study_pack/official_ps/ps4.typ
-          cat >> study_pack/official_ps/style.typ <<'EOF'
-
-#let show_solutions = sys.inputs.at("solutions") == "true"
-#let maybe_solution(title, body) = if show_solutions { solution(title, body) } else { none }
-#let maybe_key(body) = if show_solutions { key(body) } else { none }
-#let maybe_caution(body) = if show_solutions { caution(body) } else { none }
-EOF
+          printf '%s\n' \
+            '' \
+            '#let show_solutions = sys.inputs.at("solutions") == "true"' \
+            '#let maybe_solution(title, body) = if show_solutions { solution(title, body) } else { none }' \
+            '#let maybe_key(body) = if show_solutions { key(body) } else { none }' \
+            '#let maybe_caution(body) = if show_solutions { caution(body) } else { none }' \
+            >> study_pack/official_ps/style.typ
           for f in content.typ ps1.typ ps2.typ ps3.typ ps4.typ; do
             sed -i '1i #import "style.typ": *' "study_pack/official_ps/${f}"
           done
